@@ -1,4 +1,4 @@
-Actor DSZombieman64 : DSZombieman Replaces 64Zombieman
+Actor DSZombieman64 : DSZombieman Replaces 64Zombieman 
 {
 	Radius 22
 	Height 80
