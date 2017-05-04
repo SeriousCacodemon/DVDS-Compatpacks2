@@ -1,0 +1,10 @@
+Actor FloraBriscoletti64 : FloraBriscoletti Replaces FloraBriscoletti //Changes had to be made to make her Doom 64 compatible
+{
+Radius 16
+Height 62
+XScale 0.379632
+YScale 0.47454
+Gravity 0.6
+Player.ViewHeight 51
+Player.AttackZOffset 16
+}

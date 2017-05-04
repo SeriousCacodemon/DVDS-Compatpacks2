@@ -1,0 +1,4 @@
+#include actors/64players.txt
+#include actors/64monsters.txt
+#include actors/64items.txt
+#include actors/64weapons.txt
