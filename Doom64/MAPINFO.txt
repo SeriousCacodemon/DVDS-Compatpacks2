@@ -1,8 +1,7 @@
 gameinfo
 {
-AddQuitMessages = "$QUITMSG15", "$QUITMSG15", "$QUITMSG16", "$QUITMSG16", "$QUITMSG17", "$QUITMSG17", "$QUITMSG18", "$QUITMSG18"
+quitmessages = "$QUITMSG", "$QUITMSG1", "$QUITMSG2", "$QUITMSG3", "$QUITMSG4", "$QUITMSG5", "$QUITMSG6", "$QUITMSG7", "$QUITMSG8", "$QUITMSG9", "$QUITMSG10", "$QUITMSG11", "$QUITMSG12", "$QUITMSG13", "$QUITMSG14"
 }
-
 gamedefaults
 {
 allowjump
@@ -18,8 +17,6 @@ skill baby
 	playerclassname = "Deggaris Montegger", "Pussyfooting..."
 	playerclassname = "Illucia Hendershot", "Pussyfooting..."
 	playerclassname = "Flora Briscoletti", "Lost in the World..."
-	playerclassname = "Ailish", "Would rather stay home..."
-	playerclassname = "Petra Johanna Lagerkvist", "Not ready for this..."
 	Key = "i"
 }
 
@@ -31,8 +28,6 @@ skill easy
 	playerclassname = "Deggaris Montegger", "Still A Greenhorn..."
 	playerclassname = "Illucia Hendershot", "Still A Greenhorn..."
 	playerclassname = "Flora Briscoletti", "Still a Bit Scared..."
-	playerclassname = "Ailish", "Bad feeling about this..."
-	playerclassname = "Petra Johanna Lagerkvist", "Taking it easy..."
 	Key = "h"
 }
 
@@ -45,8 +40,6 @@ skill normal
 	playerclassname = "Deggaris Montegger", "UAC Training Course!"
 	playerclassname = "Illucia Hendershot", "UAC Training Course!"
 	playerclassname = "Flora Briscoletti", "A Long Journey Awaits..."
-	playerclassname = "Ailish", "Staying is boring..."
-	playerclassname = "Petra Johanna Lagerkvist", "I have sheer brilliance..."
 	DefaultSkill
 }
 
@@ -58,8 +51,6 @@ skill hard
 	playerclassname = "Deggaris Montegger", "This Is More Like It!"
 	playerclassname = "Illucia Hendershot", "This Is More Like It!"
 	playerclassname = "Flora Briscoletti", "It's Getting Messy..."
-	playerclassname = "Ailish", "Time to die, fiends!"
-	playerclassname = "Petra Johanna Lagerkvist", "Invincible I am..."
 	Key = "u"
 }
 
@@ -70,19 +61,5 @@ skill nightmare
 	playerclassname = "Deggaris Montegger", "Nightmare of Deggaris!"
 	playerclassname = "Illucia Hendershot", "Nightmare of Illucia!"
 	playerclassname = "Flora Briscoletti", "Armageddon's Revenge!!"
-	playerclassname = "Ailish", "I praise you, Tetsu!"
-	playerclassname = "Petra Johanna Lagerkvist", "I am become death..."
 	Key = "n"
-}
-
-skill doomslayer
-{
-	SpawnFilter = Nightmare
-	Name = "Doomslayer!"
-	playerclassname = "Deggaris Montegger", "Deggaris the Doomslayer!"
-	playerclassname = "Illucia Hendershot", "Illucia the Doomslayer!"
-	playerclassname = "Flora Briscoletti", "The HaSatan's Wrath!"
-	playerclassname = "Ailish", "Goddess of Sudeki!"
-	playerclassname = "Petra Johanna Lagerkvist", "God is Dead..."
-	Key = "d"
 }
