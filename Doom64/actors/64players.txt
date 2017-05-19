@@ -1,10 +1,18 @@
 Actor FloraBriscoletti64 : FloraBriscoletti Replaces FloraBriscoletti //Changes had to be made to make her Doom 64 compatible
 {
 Radius 16
-Height 62
-XScale 0.379632
-YScale 0.47454
+Height 64
+XScale 0.414144
+YScale 0.4969728
 Gravity 0.6
-Player.ViewHeight 51
+Player.ViewHeight 52
 Player.AttackZOffset 16
+States
+	{
+			Pain.Vertigo:
+			NERA A 0 ThrustThingZ(0, 55, 0, 0)
+			NERA A 3
+			NERA A 3 A_PlaySound(FloraPain3c,CHAN_VOICE)
+			Goto See
+	}
 }

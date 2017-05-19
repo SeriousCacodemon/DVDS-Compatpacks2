@@ -1,0 +1,2 @@
+actor 64ZombiemanSpawner : ZombiemanSpawner Replaces 64Zombieman { }
+actor 64ShotgunguySpawner : ShotgunguySpawner Replaces 64Shotgunguy { }

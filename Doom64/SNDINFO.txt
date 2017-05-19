@@ -1,0 +1,15 @@
+$alias misc/keytry *keylocked
+
+$random FloraKeyFail { NERANOK1 NERANOK2 NERANOK3 }
+
+$playersound	DeggarisSND	male	*keylocked	DSNOKEY
+$playersound	DeggarisSND	female	*keylocked	DSNOKEY
+$playersound	DeggarisSND	other	*keylocked	DSNOKEY
+
+$playersound	IlluciaSND	male	*keylocked	DSFNOKY
+$playersound	IlluciaSND	female	*keylocked	DSFNOKY
+$playersound	IlluciaSND	other	*keylocked	DSFNOKY
+
+$playeralias	FloraSND	male	*keylocked	FloraKeyFail
+$playeralias	FloraSND	female	*keylocked	FloraKeyFail
+$playeralias	FloraSND	other	*keylocked	FloraKeyFail
