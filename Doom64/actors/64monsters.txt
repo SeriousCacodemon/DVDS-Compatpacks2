@@ -6,22 +6,22 @@ Actor DSZombieman64 : DSZombieman Replaces DSZombieman
 	{
    TracerBullet:
      POSS F 0
-	 {
-	  A_FaceTarget;
-	  A_SetUserVar("user_canusecrisisatk",0);
-	  if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+		 {
+			A_FaceTarget;
+			A_SetUserVar("user_canusecrisisatk",0);
+			if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
       if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-	  if(user_canusecrisisatk == 1)
-	  {
+			if(user_canusecrisisatk == 1)
+			{
        A_PlaySound("crisisattack",6);
        A_PlaySound("crisisattack2",7);
        A_CustomMissile("ZombieBulletTracerCrisis", 64, 12, frandom(user_shotaccuracy1,user_shotaccuracy2), CMF_OFFSETPITCH, frandom(user_shotzaccuracy1,user_shotzaccuracy2));
-	  }
-	  else
-	  {
+			}
+			else
+			{
        A_CustomMissile("ZombieBulletTracer", 64, 12, frandom(user_shotaccuracy1,user_shotaccuracy2), CMF_OFFSETPITCH, frandom(user_shotzaccuracy1,user_shotzaccuracy2));
-	  }
-	 }
+			}
+		 }
      goto EndMissile
 		Pain.Vertigo:
 			POSS G 0 ThrustThingZ(0, 55, 0, 0)
@@ -339,30 +339,30 @@ Actor DSRepeaterZombie64 : RepeaterZombie Replaces RepeaterZombie
 					if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
 					if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
 					if(user_canusecrisisatk == 1)
-				{
-					A_PlaySound("crisisattack",6);
-					A_PlaySound("crisisattack2",7);
-					A_CustomMissile("ZombieRepeaterTracerCrisis", 56, 12, frandom(-10.0,10.0), CMF_OFFSETPITCH, frandom(-8.0,8.0));
-					A_CustomMissile("ZombieRepeaterTracerCrisis", 56, 12, frandom(-10.0,10.0), CMF_OFFSETPITCH, frandom(-8.0,8.0));
-				}
-				else
-				{
-					A_CustomMissile("ZombieRepeaterTracer", 56, 12, frandom(-10.0,10.0), CMF_OFFSETPITCH, frandom(-8.0,8.0));
-					A_CustomMissile("ZombieRepeaterTracer", 56, 12, frandom(-10.0,10.0), CMF_OFFSETPITCH, frandom(-8.0,8.0));
+					{
+						A_PlaySound("crisisattack",6);
+						A_PlaySound("crisisattack2",7);
+						A_CustomMissile("ZombieRepeaterTracerCrisis", 56, 12, frandom(-10.0,10.0), CMF_OFFSETPITCH, frandom(-8.0,8.0));
+						A_CustomMissile("ZombieRepeaterTracerCrisis", 56, 12, frandom(-10.0,10.0), CMF_OFFSETPITCH, frandom(-8.0,8.0));
+					}
+					else
+					{
+						A_CustomMissile("ZombieRepeaterTracer", 56, 12, frandom(-10.0,10.0), CMF_OFFSETPITCH, frandom(-8.0,8.0));
+						A_CustomMissile("ZombieRepeaterTracer", 56, 12, frandom(-10.0,10.0), CMF_OFFSETPITCH, frandom(-8.0,8.0));
+					}
 				}
 			}
-		}
-		RPZM E 2 A_FaceTarget
-		RPZM E 0 A_Jump(220, 2)
-		RPZM E 0 A_SpidRefire
-		RPZM E 0 A_JumpIfInventory("RepeaterZombieHeat", 100, "Overload")
-		loop
-	SpinDown:
-		RPZM E 0 A_PlaySoundEx("Weapons/RepeaterSpinDown", "SoundSlot7", 0)
-		RPZM E 0 A_TakeInventory("RepeaterZombieFiring", 1)
-		RPZM E 0 A_TakeInventory("RepeaterZombieHeat", 100)
-		RPZM EFEFEEFF 4
-		Goto See
+			RPZM E 2 A_FaceTarget
+			RPZM E 0 A_Jump(220, 2)
+			RPZM E 0 A_SpidRefire
+			RPZM E 0 A_JumpIfInventory("RepeaterZombieHeat", 100, "Overload")
+			loop
+		SpinDown:
+			RPZM E 0 A_PlaySoundEx("Weapons/RepeaterSpinDown", "SoundSlot7", 0)
+			RPZM E 0 A_TakeInventory("RepeaterZombieFiring", 1)
+			RPZM E 0 A_TakeInventory("RepeaterZombieHeat", 100)
+			RPZM EFEFEEFF 4
+			Goto See
 		Pain.Vertigo:
 			RPZM I 0
 			{
@@ -509,84 +509,84 @@ Actor DSShotgunguy64 : DSShotgunguy Replaces DSShotgunguy
 	
 	States
 	{
-	See:
-		SPOS A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0)
-		SPOS AABBCCDD 4
-		{
-		if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
-		else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
-		else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
-		else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
-		if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
-		if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
-		A_Chase;
-		}
-		loop
-	Missile:
-		TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
-		SPOS E 10 
-		{
-		A_FaceTarget;
-		if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(7); }
-		else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 80) { A_SetTics(8); }
-		else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 40) { A_SetTics(9); }
-		}
-		SPOS F 10
-		{
-		A_FaceTarget;
-		if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(7); }
-		else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 80) { A_SetTics(8); }
-		else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 40) { A_SetTics(9); }
-		A_PlaySound("shotguy/attack");
-		if (ACS_NamedExecuteWithResult("CheckShotgunnerSpreads") == 0) { A_SetUserVar("user_pelletsfired",3); } else { A_SetUserVar("user_pelletsfired",7); }
-
-		A_SetUserVar("user_canusecrisisatk",0);
-		if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-		if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-		if(user_canusecrisisatk == 1)
-		{
-			A_PlaySound("crisisattack",6);
-			A_PlaySound("crisisattack2",7);
-			if (ACS_NamedExecuteWithResult("CheckHitscanType") == 0) // Hitscan
+		See:
+			SPOS A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0)
+			SPOS AABBCCDD 4
 			{
-				A_CustomBulletAttack (22.4, 0, user_pelletsfired, ((random(1,5) * 3) * ACS_NamedExecuteWithResult("CrisisMultiplier")), "BulletPuff", 0, 1);
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
+				else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
+				A_Chase;
 			}
-			else
+			loop
+		Missile:
+			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+			SPOS E 10 
 			{
-			for (A_SetUserVar(user_currenttracer, 0); user_currenttracer < user_pelletsfired; A_SetUserVar(user_currenttracer, user_currenttracer + 1))
+				A_FaceTarget;
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(7); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 80) { A_SetTics(8); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 40) { A_SetTics(9); }
+			}
+			SPOS F 10
 			{
-				A_CustomMissile("ZombieBulletTracerCrisis", 64, 12, frandom(-11.2,11.2));
-			}	   
-		}
-		}
-		else
-		{
-		if (ACS_NamedExecuteWithResult("CheckHitscanType") == 0) // Hitscan
-		{
-			A_CustomBulletAttack (22.4, 0, user_pelletsfired, random(1,5) * 3, "BulletPuff", 0, 1);
-		}
-		else
-		{
-			for (A_SetUserVar(user_currenttracer, 0); user_currenttracer < user_pelletsfired; A_SetUserVar(user_currenttracer, user_currenttracer + 1))
+				A_FaceTarget;
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(7); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 80) { A_SetTics(8); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 40) { A_SetTics(9); }
+				A_PlaySound("shotguy/attack");
+				if (ACS_NamedExecuteWithResult("CheckShotgunnerSpreads") == 0) { A_SetUserVar("user_pelletsfired",3); } else { A_SetUserVar("user_pelletsfired",7); }
+
+				A_SetUserVar("user_canusecrisisatk",0);
+				if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+				if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+				if(user_canusecrisisatk == 1)
+				{
+					A_PlaySound("crisisattack",6);
+					A_PlaySound("crisisattack2",7);
+					if (ACS_NamedExecuteWithResult("CheckHitscanType") == 0) // Hitscan
+					{
+						A_CustomBulletAttack (22.4, 0, user_pelletsfired, ((random(1,5) * 3) * ACS_NamedExecuteWithResult("CrisisMultiplier")), "BulletPuff", 0, 1);
+					}
+					else
+					{
+						for (A_SetUserVar(user_currenttracer, 0); user_currenttracer < user_pelletsfired; A_SetUserVar(user_currenttracer, user_currenttracer + 1))
+						{
+							A_CustomMissile("ZombieBulletTracerCrisis", 64, 12, frandom(-11.2,11.2));
+						}	   
+					}
+				}
+				else
+				{
+					if (ACS_NamedExecuteWithResult("CheckHitscanType") == 0) // Hitscan
+					{
+						A_CustomBulletAttack (22.4, 0, user_pelletsfired, random(1,5) * 3, "BulletPuff", 0, 1);
+					}
+					else
+					{
+						for (A_SetUserVar(user_currenttracer, 0); user_currenttracer < user_pelletsfired; A_SetUserVar(user_currenttracer, user_currenttracer + 1))
+						{
+							A_CustomMissile("ZombieBulletTracer", 64, 12, frandom(-11.2,11.2));
+						}	   
+					}
+				}
+			}
+			SPOS F 10 bright
 			{
-				A_CustomMissile("ZombieBulletTracer", 64, 12, frandom(-11.2,11.2));
-			}	   
-		}
-		}
-		}
-		SPOS F 10 bright
-		{
-		if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(7); }
-		else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 80) { A_SetTics(8); }
-		else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 40) { A_SetTics(9); }
-		}
-		SPOS E 10
-		{
-		if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(7); }
-		else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 80) { A_SetTics(8); }
-		else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 40) { A_SetTics(9); }
-		}
-		goto See
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(7); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 80) { A_SetTics(8); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 40) { A_SetTics(9); }
+			}
+			SPOS E 10
+			{
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(7); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 80) { A_SetTics(8); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 40) { A_SetTics(9); }
+			}
+			goto See
 		Pain.Vertigo:
 			SPOS G 0 ThrustThingZ(0, 55, 0, 0)
 			SPOS G 3
@@ -682,8 +682,7 @@ Actor DSSuperShotgunGuy64 : SuperShotgunGuy Replaces SuperShotgunGuy
 			GPOS L 5 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
 			GPOS KJIH 5
 			Goto See
-
-		}
+	}
 }
 
 Actor DSChaingunguy64 : DSChaingunguy Replaces DsChaingunguy
@@ -791,36 +790,36 @@ Actor DSDoomImp64 : DSDoomImp Replaces 64DoomImp
 	+MISSILEMORE
 	States
 	{
-  Missile:
-    TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
-    TROO IJ 8
-	{
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(6); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(7); }
-	 A_FaceTarget;
-	}
-    TROO K 6
-	{
-	 A_FaceTarget;
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(4); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(5); }
+		Missile:
+			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+			TROO IJ 8
+			{
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(6); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(7); }
+			 A_FaceTarget;
+			}
+			TROO K 6
+			{
+			 A_FaceTarget;
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(4); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(5); }
 
-	 A_SetUserVar("user_canusecrisisatk",0);
-	 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-     if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-	 if(user_canusecrisisatk == 1)
-	 {
-      A_PlaySound("crisisattack",6);
-      A_PlaySound("crisisattack2",7);
-	  A_CustomMissile("DSDoomImpBall64Crisis", 64);      
-	 }
-	 else
-	 {
-		A_CustomMissile("DSDoomImpBall64", 64);     
-	 }
-	}
-    goto See
-	Melee:
+			 A_SetUserVar("user_canusecrisisatk",0);
+			 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+			 if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+			 if(user_canusecrisisatk == 1)
+			 {
+				A_PlaySound("crisisattack",6);
+				A_PlaySound("crisisattack2",7);
+				A_CustomMissile("DSDoomImpBall64Crisis", 64);      
+			 }
+			 else
+			 {
+				A_CustomMissile("DSDoomImpBall64", 64);     
+			 }
+			}
+			goto See
+		Melee:
 			TROO EF 8 A_FaceTarget
 			TROO G 6 
 			{
@@ -844,35 +843,35 @@ Actor DSDoomImp64 : DSDoomImp Replaces 64DoomImp
 			TROO H 2
 			TROO H 2 A_Pain
 			Goto See
-  		Death.Sceptre:
-    			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
-    			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    			Goto Death
-  		Pain.Gauntlets:
-    			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
-    			Goto Pain
-  		Death.Gauntlets:
-    			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
-    			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    			Goto Death
+		Death.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Pain.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
+			Goto Pain
+		Death.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
 		Death:
-    			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
 			TROO L 8
 			TROO M 8 A_Scream
 			TROO N 6
 			TROO O 6 A_NoBlocking
-    			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
+			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
 			TROO P -1
 			Stop
 		XDeath:
-    			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
 			TROO Q 5
 			TROO R 5 A_XScream
 			TROO S 5
 			TROO T 5 A_NoBlocking
 			TROO UVW 5
-    			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
+			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
 			TROO X -1
 			Stop
 		Raise:
@@ -926,73 +925,73 @@ Actor DSDoomImpBall64Crisis : DSDoomImpBall64
 
 Actor DSNightmareImp64 : 64NightmareImp Replaces 64NightmareImp
 {
-  var int user_theta; var int user_dormant; var int user_isstealth; var int user_basespeed; var int user_baseattack; var int user_basedefense; var int user_basemass; var int user_monsterlevel; var int user_legendaryevolved; var int user_extraevolvechance; var int user_extrastealthchance;
-  var int user_MaxHP; var int user_HPLowRange; var int user_HPCritRange; var int user_HPBuffRange; var int user_HPXDeathRange;
-  var int user_checkmapskill; var int user_ressurrectstr; var int user_resurrectedtimes; var int user_canusecrisisatk; // For checking if a monster has been given Skill/Map inventory items yet.
-  dropitem DoomSpellMana 24
-  dropitem DoomSpellMana 24
-  dropitem Stimpack 3
-  dropitem Stimpack 3
-  dropitem HealthBonus 2
-  dropitem HealthBonus 2
-  dropitem HealthBonus 2
-  dropitem HealthBonus 2
-  dropitem HealthBonus 2
-  dropitem ArmorBonus 2
-  dropitem ArmorBonus 2
-  dropitem ArmorBonus 2
-  dropitem ArmorBonus 2
-  dropitem ArmorBonus 2
-  dropitem MaxHealthBonus 1
-  dropitem MaxHealthBonus 1
-  dropitem MaxHealthBonus 1
-  dropitem MaxHealthBonus 1
-  dropitem MaxHealthBonus 1
-  dropitem FloraRandomArmor
+	var int user_theta; var int user_dormant; var int user_isstealth; var int user_basespeed; var int user_baseattack; var int user_basedefense; var int user_basemass; var int user_monsterlevel; var int user_legendaryevolved; var int user_extraevolvechance; var int user_extrastealthchance;
+	var int user_MaxHP; var int user_HPLowRange; var int user_HPCritRange; var int user_HPBuffRange; var int user_HPXDeathRange;
+	var int user_checkmapskill; var int user_ressurrectstr; var int user_resurrectedtimes; var int user_canusecrisisatk; // For checking if a monster has been given Skill/Map inventory items yet.
+	dropitem DoomSpellMana 24
+	dropitem DoomSpellMana 24
+	dropitem Stimpack 3
+	dropitem Stimpack 3
+	dropitem HealthBonus 2
+	dropitem HealthBonus 2
+	dropitem HealthBonus 2
+	dropitem HealthBonus 2
+	dropitem HealthBonus 2
+	dropitem ArmorBonus 2
+	dropitem ArmorBonus 2
+	dropitem ArmorBonus 2
+	dropitem ArmorBonus 2
+	dropitem ArmorBonus 2
+	dropitem MaxHealthBonus 1
+	dropitem MaxHealthBonus 1
+	dropitem MaxHealthBonus 1
+	dropitem MaxHealthBonus 1
+	dropitem MaxHealthBonus 1
+	dropitem FloraRandomArmor
 
-  DamageFactor "Normal", 0.875
-  RadiusDamageFactor 0.875
-  DamageFactor "Explosive", 0.875
-  DamageFactor "Crush", 12.8
-  DamageFactor "Fire", 0.5 // Imps = -50% Fire Damage
-  Painchance "Fire", 100 // Imps = -50% Pain Chance
-  DamageFactor "Holy", 1.5 // Imps = +50% Holy Damage
-  Painchance "Holy", 255 // Imps = +50% Pain Chance
+	DamageFactor "Normal", 0.875
+	RadiusDamageFactor 0.875
+	DamageFactor "Explosive", 0.875
+	DamageFactor "Crush", 12.8
+	DamageFactor "Fire", 0.5 // Imps = -50% Fire Damage
+	Painchance "Fire", 100 // Imps = -50% Pain Chance
+	DamageFactor "Holy", 1.5 // Imps = +50% Holy Damage
+	Painchance "Holy", 255 // Imps = +50% Pain Chance
 
-  Painchance 200
-  Painchance "Fist", 255 // Fist attacks have a +50% chance of stunning an enemy
-  Painchance "Kick", 255 // Kick attacks have a +150% chance of stunning an enemy
-  Painchance "Gauntlets", 255 // Fist attacks have a +50% chance of stunning an enemy
-  Painchance "GravityHP", 255
-  Painchance "GravityMP", 255
-  Painchance "GravityHPMP", 255 
+	Painchance 200
+	Painchance "Fist", 255 // Fist attacks have a +50% chance of stunning an enemy
+	Painchance "Kick", 255 // Kick attacks have a +150% chance of stunning an enemy
+	Painchance "Gauntlets", 255 // Fist attacks have a +50% chance of stunning an enemy
+	Painchance "GravityHP", 255
+	Painchance "GravityMP", 255
+	Painchance "GravityHPMP", 255 
 	States
 	{
-  Pain.Charm: TNT1 A 0 { A_PlaySound("Munchies/Charmed"); A_ChangeFlag("FRIENDLY",1); Thing_ChangeTID(0,1000); } Goto See  Pain.Heal1: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,0); } Goto See  Pain.Heal2: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,1); } Goto See  Pain.Heal3: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,2); } Goto See  Pain.Heal4: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,3); } Goto See Goto See
+		Pain.Charm: TNT1 A 0 { A_PlaySound("Munchies/Charmed"); A_ChangeFlag("FRIENDLY",1); Thing_ChangeTID(0,1000); } Goto See  Pain.Heal1: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,0); } Goto See  Pain.Heal2: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,1); } Goto See  Pain.Heal3: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,2); } Goto See  Pain.Heal4: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,3); } Goto See Goto See
 		Spawn:
-    			TRO2 A 0 NoDelay ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
+			TRO2 A 0 NoDelay ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
 			TRO2 AB 10 A_Look
 			Loop
 		See:
-    			TRO2 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0)
+			TRO2 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0)
 			TRO2 AABBCCDD 3
 			{
-     				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
-     				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
-     				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
 	 			else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
-     				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
-     				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
-	 A_Chase;
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
+				A_Chase;
 			}
 			Loop
 		Melee:
-    			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+ 			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
 			TRO2 EF 8 A_FaceTarget
 			TRO2 G 6 A_MeleeAttack
 			Goto See
 		Missile:
-    			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
 			TRO2 IJ 8 A_FaceTarget
 			TRO2 K 6 A_CustomMissile("64NightmareImpBall", 60)
 			Goto See
@@ -1005,78 +1004,78 @@ Actor DSNightmareImp64 : 64NightmareImp Replaces 64NightmareImp
 			TRO2 H 2
 			TRO2 H 2 A_Pain
 			Goto See
- 		Pain.Holy:
-    			TRO2 H 2
-   			 TRO2 H 2 A_Pain
-  			  TRO2 H 2
- 			   TRO2 H 2
- 			   Goto See
-  		Pain.Fist:
-  			  TRO2 H 2
-   			 TRO2 H 2 A_Pain
-   			 TRO2 HH 2
-  			  Goto See
- 		 Pain.Kick:
-   			 TRO2 H 2
-    			TRO2 H 2 A_Pain
-   			 TRO2 HHHH 2
-   			 Goto See
+		Pain.Holy:
+			TRO2 H 2
+			TRO2 H 2 A_Pain
+			TRO2 H 2
+			TRO2 H 2
+			Goto See
+		Pain.Fist:
+			TRO2 H 2
+			TRO2 H 2 A_Pain
+			TRO2 HH 2
+			Goto See
+		Pain.Kick:
+			TRO2 H 2
+			TRO2 H 2 A_Pain
+			TRO2 HHHH 2
+			Goto See
 
- 		 Pain.GravityHP:
-  			  TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
-   			 Goto See
- 		 Pain.GravityMP:
-   			 TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
-   			 Goto See
-  		Pain.GravityHPMP:
-   			 TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
-   			 Goto See
-  		Pain.Sceptre:
-   			 TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
-   			 TNT1 A 0 
-   			 Goto Pain
-  		Death.Sceptre:
-   			 TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-   			 TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
-   			 TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-   			 Goto Death
-  		Pain.Gauntlets:
-   			 TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
-   			 Goto Pain
-  		Death.Gauntlets:
-    			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
-    			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    			Goto Death
+		Pain.GravityHP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
+			Goto See
+		Pain.GravityMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
+			Goto See
+		Pain.GravityHPMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
+			Goto See
+		Pain.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
+			TNT1 A 0 
+			Goto Pain
+		Death.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Pain.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
+			Goto Pain
+		Death.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
 		Death:
-    			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
 			TRO2 L 8
 			TRO2 M 8 A_Scream
 			TRO2 N 6
 			TRO2 O 6 A_NoBlocking
 			TRO2 P -1
-    			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
+			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
 			Stop
 		XDeath:
-    			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
 			TRO2 Q 5
 			TRO2 R 5 A_XScream
 			TRO2 S 5
 			TRO2 T 5 A_NoBlocking
 			TRO2 UVW 5
 			TRO2 X -1
-    			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
+			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
 			Stop
-  		Ice:
-    			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
-    			TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
-    			TRO2 H 5 A_GenericFreezeDeath
-    			TRO2 H 1 A_FreezeDeathChunks
-    			wait
+		Ice:
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
+			TRO2 H 5 A_GenericFreezeDeath
+			TRO2 H 1 A_FreezeDeathChunks
+			wait
 		Raise:
 			TRO2 PO 8
 			TRO2 NML 6
-    			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
+			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
 			Goto See
 		Crush:
 			A027 A 0
@@ -1084,7 +1083,6 @@ Actor DSNightmareImp64 : 64NightmareImp Replaces 64NightmareImp
 			A027 A -1
 			Stop
 	}
-
 }
 
 Actor DSDemon64 : DSDemon Replaces 64Demon
@@ -1095,8 +1093,8 @@ Actor DSDemon64 : DSDemon Replaces 64Demon
 	
 	States
 	{
-  		Spawn:
-    			SARG A 0 NoDelay ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
+		Spawn:
+			SARG A 0 NoDelay ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
 			SARG BD 10 A_Look
 			Loop
 		Pain.Vertigo:
@@ -1119,143 +1117,143 @@ Actor DSSpectre64 : DSSpectre Replaces 64Spectre
 	RenderStyle Translucent
 	Alpha 1.0
 	PainChance 160 // DEFAULT IS 180
-  states
-  {
-  Pain.Charm: TNT1 A 0 { A_PlaySound("Munchies/Charmed"); A_ChangeFlag("FRIENDLY",1); Thing_ChangeTID(0,1000); } Goto See  Pain.Heal1: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,0); } Goto See  Pain.Heal2: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,1); } Goto See  Pain.Heal3: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,2); } Goto See  Pain.Heal4: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,3); } Goto See Goto See
-  Spawn:
-    SAR2 A 0 NoDelay ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
-	SAR2 A 0 A_SetTranslucent(1.0, 0)
-	SAR2 BD 10 A_Look
-    goto Spawn+1
-  See:
-	SAR2 A 0 A_SetTranslucent(1.0, 0)
-	SAR2 AA 2 A_Chase
-	SAR2 B 0 A_SetTranslucent(0.75, 0)
-	SAR2 BB 2 A_Chase
-	SAR2 C 0 A_SetTranslucent(0.50, 0)
-	SAR2 CC 2 A_Chase
-	SAR2 D 0 A_SetTranslucent(0.25, 0)
-	SAR2 DD 2 A_Chase
-	SAR2 A 0 A_SetTranslucent(0.25, 0)
-	SAR2 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0)
-    SAR2 AABBCCDD 2
+	states
 	{
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(1); }
-	 A_Chase;
-	}
-    goto See+13
+		Pain.Charm: TNT1 A 0 { A_PlaySound("Munchies/Charmed"); A_ChangeFlag("FRIENDLY",1); Thing_ChangeTID(0,1000); } Goto See  Pain.Heal1: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,0); } Goto See  Pain.Heal2: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,1); } Goto See  Pain.Heal3: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,2); } Goto See  Pain.Heal4: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,3); } Goto See Goto See
+		Spawn:
+			SAR2 A 0 NoDelay ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
+			SAR2 A 0 A_SetTranslucent(1.0, 0)
+			SAR2 BD 10 A_Look
+			goto Spawn+1
+		See:
+			SAR2 A 0 A_SetTranslucent(1.0, 0)
+			SAR2 AA 2 A_Chase
+			SAR2 B 0 A_SetTranslucent(0.75, 0)
+			SAR2 BB 2 A_Chase
+			SAR2 C 0 A_SetTranslucent(0.50, 0)
+			SAR2 CC 2 A_Chase
+			SAR2 D 0 A_SetTranslucent(0.25, 0)
+			SAR2 DD 2 A_Chase
+			SAR2 A 0 A_SetTranslucent(0.25, 0)
+			SAR2 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0)
+			SAR2 AABBCCDD 2
+			{
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(1); }
+			 A_Chase;
+			}
+			goto See+13
 
-  Melee:
-	TNT1 A 0 A_SetTranslucent(0.25, 0)
-    TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
-    SAR2 EF 8
-	{
-	 A_FaceTarget;
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(5); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 80) { A_SetTics(6); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 40) { A_SetTics(7); }
-	}
-    SAR2 G 8
- 	{
-	 A_FaceTarget;
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(5); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 80) { A_SetTics(6); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 40) { A_SetTics(7); }
-	 A_SetUserVar("user_canusecrisisatk",0);
-	 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-     if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-	 if(user_canusecrisisatk == 1)
-	 {
-      A_PlaySound("crisisattack2",7);
-      A_PlaySound("crisisattack",6);
-      A_CustomMeleeAttack( ((random(1,10)*4) * ACS_NamedExecuteWithResult("CrisisMultiplier")) ,"none","none"); // A_SargAttack
-	 }
-	 else
-	 {
-	  A_CustomMeleeAttack(random(1,10)*4,"none","none"); // A_SargAttack
-	 }
-	}
-    goto See+13
+		Melee:
+			TNT1 A 0 A_SetTranslucent(0.25, 0)
+			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+			SAR2 EF 8
+			{
+			 A_FaceTarget;
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(5); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 80) { A_SetTics(6); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 40) { A_SetTics(7); }
+			}
+			SAR2 G 8
+			{
+			 A_FaceTarget;
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(5); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 80) { A_SetTics(6); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 40) { A_SetTics(7); }
+			 A_SetUserVar("user_canusecrisisatk",0);
+			 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+			 if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+			 if(user_canusecrisisatk == 1)
+			 {
+				A_PlaySound("crisisattack2",7);
+				A_PlaySound("crisisattack",6);
+				A_CustomMeleeAttack( ((random(1,10)*4) * ACS_NamedExecuteWithResult("CrisisMultiplier")) ,"none","none"); // A_SargAttack
+			 }
+			 else
+			 {
+				A_CustomMeleeAttack(random(1,10)*4,"none","none"); // A_SargAttack
+			 }
+			}
+			goto See+13
 
-  Pain:
-    SAR2 H 2 Fast
-    SAR2 H 2 Fast A_Pain
-    Goto See+13
-  Pain.Fist:
-    SAR2 H 2 Fast
-    SAR2 H 2 Fast A_Pain
-    SAR2 HH 2 Fast
-    Goto See+13
-  Pain.Kick:
-    SAR2 H 2 Fast
-    SAR2 H 2 Fast A_Pain
-    SAR2 HHHH 2 Fast
-    Goto See+13
+		Pain:
+			SAR2 H 2 Fast
+			SAR2 H 2 Fast A_Pain
+			Goto See+13
+		Pain.Fist:
+			SAR2 H 2 Fast
+			SAR2 H 2 Fast A_Pain
+			SAR2 HH 2 Fast
+			Goto See+13
+		Pain.Kick:
+			SAR2 H 2 Fast
+			SAR2 H 2 Fast A_Pain
+			SAR2 HHHH 2 Fast
+			Goto See+13
 
-  Pain.GravityHP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
-    Goto See+13
-  Pain.GravityMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
-    Goto See+13
-  Pain.GravityHPMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
-    Goto See+13
-  Pain.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
-    TNT1 A 0 
-    Goto Pain
-  Death.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
-  Pain.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
-    Goto Pain
-  Pain.Vertigo:
-	SAR2 H 0 A_SetTranslucent(0.25, 0)
-	SAR2 H 0 ThrustThingZ(0, 55, 0, 0)
-	SAR2 H 2
-	SAR2 H 2 A_Pain
-	Goto See+13
-  Death.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
-  Death:
-    TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
-	SAR2 I 8 A_FadeIn(0.20)
-	SAR2 J 0 A_FadeIn(0.20)
-	SAR2 J 8 A_Scream
-	SAR2 K 4 A_FadeIn(0.20)
-	SAR2 L 0 A_FadeIn(0.20)
-	SAR2 L 4 A_NoBlocking
-	SAR2 M 4 A_FadeIn(0.20)
-	SAR2 N 0 A_SetTranslucent(1.0, 0)
-    TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
-    SAR2 N -1
-    Stop
-  Ice:
-    TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
-    TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
-    SAR2 H 5 A_GenericFreezeDeath
-    SAR2 H 1 A_FreezeDeathChunks
-    wait
-  Raise: 
-    SARG N 5 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
-	SAR2 M 5 A_SetTranslucent(0.90, 0)
-	SAR2 L 5 A_SetTranslucent(0.70, 0)
-	SAR2 K 5 A_SetTranslucent(0.60, 0)
-	SAR2 J 5 A_SetTranslucent(0.40, 0)
-	SAR2 I 5 A_SetTranslucent(0.25, 0)
-	Goto See+13
-  Crush:
-	A027 A 0
-	A027 A 0 A_PlaySound("misc/gibbed")
-	A027 A -1
-	Stop
+		Pain.GravityHP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
+			Goto See+13
+		Pain.GravityMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
+			Goto See+13
+		Pain.GravityHPMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
+			Goto See+13
+		Pain.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
+			TNT1 A 0 
+			Goto Pain
+		Death.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Pain.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
+			Goto Pain
+		Pain.Vertigo:
+			SAR2 H 0 A_SetTranslucent(0.25, 0)
+			SAR2 H 0 ThrustThingZ(0, 55, 0, 0)
+			SAR2 H 2
+			SAR2 H 2 A_Pain
+			Goto See+13
+		Death.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			SAR2 I 8 A_FadeIn(0.20)
+			SAR2 J 0 A_FadeIn(0.20)
+			SAR2 J 8 A_Scream
+			SAR2 K 4 A_FadeIn(0.20)
+			SAR2 L 0 A_FadeIn(0.20)
+			SAR2 L 4 A_NoBlocking
+			SAR2 M 4 A_FadeIn(0.20)
+			SAR2 N 0 A_SetTranslucent(1.0, 0)
+			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
+			SAR2 N -1
+			Stop
+		Ice:
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
+			SAR2 H 5 A_GenericFreezeDeath
+			SAR2 H 1 A_FreezeDeathChunks
+			wait
+		Raise: 
+			SARG N 5 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
+			SAR2 M 5 A_SetTranslucent(0.90, 0)
+			SAR2 L 5 A_SetTranslucent(0.70, 0)
+			SAR2 K 5 A_SetTranslucent(0.60, 0)
+			SAR2 J 5 A_SetTranslucent(0.40, 0)
+			SAR2 I 5 A_SetTranslucent(0.25, 0)
+			Goto See+13
+		Crush:
+			A027 A 0
+			A027 A 0 A_PlaySound("misc/gibbed")
+			A027 A -1
+			Stop
   }
 }
 
@@ -1278,122 +1276,122 @@ Actor DSLostSoul64 : DSLostSoul Replaces 64LostSoul
 			SKUL A 0 A_TakeInventory("100PercentDMGWeakness",9999)
 			SKUL ABC 5 BRIGHT A_Look
 			Loop
-  See:
-    SKUL A 0
-	{
- 	 A_TakeInventory("100PercentDMGWeakness",9999);
-	 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0);
-	 if(health <= user_HPLowRange)
-	 {
- 	  A_ChangeFlag("MISSILEEVENMORE", 1);
-      A_ChangeFlag("NOFEAR", 1);
-      A_ChangeFlag("CANTSEEK", 1);
-      A_ChangeFlag("NOINFIGHTING", 1);
-      A_ChangeFlag("THRUSPECIES", 1);
-      A_ChangeFlag("DONTHARMSPECIES", 1);
-      A_ChangeFlag("NORADIUSDMG", 1);
-	  if(health <= user_HPCritRange)
-	  {
-	   A_ChangeFlag("VISIBILITYPULSE", 1);
-       A_ChangeFlag("DONTRIP", 1);
-       A_ChangeFlag("DONTSQUASH", 1);
-       A_ChangeFlag("DONTMORPH", 1);
-       A_ChangeFlag("DONTBLAST", 1);
-	  }
-	  else
-	  {
-	   A_ChangeFlag("VISIBILITYPULSE", 0);
-       A_ChangeFlag("DONTRIP", 0);
-       A_ChangeFlag("DONTSQUASH", 0);
-       A_ChangeFlag("DONTMORPH", 0);
-       A_ChangeFlag("DONTBLAST", 0);
-	  }
-	 }
-	 else
-	 {
- 	  A_ChangeFlag("MISSILEEVENMORE", 0);
-      A_ChangeFlag("NOFEAR", 0);
-      A_ChangeFlag("CANTSEEK", 0);
-      A_ChangeFlag("NOINFIGHTING", 0);
-      A_ChangeFlag("THRUSPECIES", 0);
-      A_ChangeFlag("DONTHARMSPECIES", 0);
-      A_ChangeFlag("NORADIUSDMG", 0);
-	 }
-	}
-    SKUL ABC 3 BRIGHT
-	{
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
-	 else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 45) { A_SetTics(5); }
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(4); }
-	 A_Chase;
-	}
-    loop
-  Missile:
-    TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
-    SKUL D 10 BRIGHT
-	{
-	 A_FaceTarget;
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(8); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(9); }
-	}
-    SKUL E 4 BRIGHT
-	{
-	 A_GiveInventory("100PercentDMGWeakness",1);
-	 A_SetUserVar("user_canusecrisisatk",0);
-	 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-     if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-	 if(user_canusecrisisatk == 1)
-	 {
-      A_PlaySound("crisisattack2",7);
-      A_PlaySound("crisisattack",6);
-	  A_SkullAttack(70);
-	 }
-	 else
-	 {
-	  A_SkullAttack(30);
-	 }
-	}
-    SKUL DDEE 2 BRIGHT
-	{
-	 A_SetUserVar("user_canusecrisisatk",0);
-	 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-     if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-	 if(user_canusecrisisatk == 1)
-	 {
-	  A_CustomMeleeAttack(random(1,8)*6,"none","none");
-	 }
-	}
-    Goto Missile+3
-  Pain:
-    SKUL F 0 Bright
-	{
- 	 A_TakeInventory("100PercentDMGWeakness",9999);
-	}
-    SKUL F 3 Bright
-    SKUL F 3 Bright A_Pain
-    Goto See
-  Pain.Fist:
-    SKUL F 0 Bright
-	{
- 	 A_TakeInventory("100PercentDMGWeakness",9999);
-	}
-    SKUL F 3 Bright
-    SKUL F 3 Bright A_Pain
-    SKUL FF 3 Bright
-    Goto See
-  Pain.Kick:
-    SKUL F 0 Bright
-	{
- 	 A_TakeInventory("100PercentDMGWeakness",9999);
-	}
-    SKUL F 3 Bright
-    SKUL F 3 Bright A_Pain
-    SKUL FFFF 3 Bright
-    Goto See
+		See:
+			SKUL A 0
+			{
+			 A_TakeInventory("100PercentDMGWeakness",9999);
+			 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0);
+			 if(health <= user_HPLowRange)
+			 {
+				A_ChangeFlag("MISSILEEVENMORE", 1);
+				A_ChangeFlag("NOFEAR", 1);
+				A_ChangeFlag("CANTSEEK", 1);
+				A_ChangeFlag("NOINFIGHTING", 1);
+				A_ChangeFlag("THRUSPECIES", 1);
+				A_ChangeFlag("DONTHARMSPECIES", 1);
+				A_ChangeFlag("NORADIUSDMG", 1);
+				if(health <= user_HPCritRange)
+				{
+				 A_ChangeFlag("VISIBILITYPULSE", 1);
+				 A_ChangeFlag("DONTRIP", 1);
+				 A_ChangeFlag("DONTSQUASH", 1);
+				 A_ChangeFlag("DONTMORPH", 1);
+				 A_ChangeFlag("DONTBLAST", 1);
+				}
+				else
+				{
+				 A_ChangeFlag("VISIBILITYPULSE", 0);
+				 A_ChangeFlag("DONTRIP", 0);
+				 A_ChangeFlag("DONTSQUASH", 0);
+				 A_ChangeFlag("DONTMORPH", 0);
+				 A_ChangeFlag("DONTBLAST", 0);
+				}
+			 }
+			 else
+			 {
+				A_ChangeFlag("MISSILEEVENMORE", 0);
+				A_ChangeFlag("NOFEAR", 0);
+				A_ChangeFlag("CANTSEEK", 0);
+				A_ChangeFlag("NOINFIGHTING", 0);
+				A_ChangeFlag("THRUSPECIES", 0);
+				A_ChangeFlag("DONTHARMSPECIES", 0);
+				A_ChangeFlag("NORADIUSDMG", 0);
+			 }
+			}
+			SKUL ABC 3 BRIGHT
+			{
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
+			 else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 45) { A_SetTics(5); }
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(4); }
+			 A_Chase;
+			}
+			loop
+		Missile:
+			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+			SKUL D 10 BRIGHT
+			{
+			 A_FaceTarget;
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(8); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(9); }
+			}
+			SKUL E 4 BRIGHT
+			{
+			 A_GiveInventory("100PercentDMGWeakness",1);
+			 A_SetUserVar("user_canusecrisisatk",0);
+			 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+			 if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+			 if(user_canusecrisisatk == 1)
+			 {
+				A_PlaySound("crisisattack2",7);
+				A_PlaySound("crisisattack",6);
+				A_SkullAttack(70);
+			 }
+			 else
+			 {
+				A_SkullAttack(30);
+			 }
+			}
+			SKUL DDEE 2 BRIGHT
+			{
+			 A_SetUserVar("user_canusecrisisatk",0);
+			 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+			 if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+			 if(user_canusecrisisatk == 1)
+			 {
+				A_CustomMeleeAttack(random(1,8)*6,"none","none");
+			 }
+			}
+			Goto Missile+3
+		Pain:
+			SKUL F 0 Bright
+			{
+			 A_TakeInventory("100PercentDMGWeakness",9999);
+			}
+			SKUL F 3 Bright
+			SKUL F 3 Bright A_Pain
+			Goto See
+		Pain.Fist:
+			SKUL F 0 Bright
+			{
+			 A_TakeInventory("100PercentDMGWeakness",9999);
+			}
+			SKUL F 3 Bright
+			SKUL F 3 Bright A_Pain
+			SKUL FF 3 Bright
+			Goto See
+		Pain.Kick:
+			SKUL F 0 Bright
+			{
+			 A_TakeInventory("100PercentDMGWeakness",9999);
+			}
+			SKUL F 3 Bright
+			SKUL F 3 Bright A_Pain
+			SKUL FFFF 3 Bright
+			Goto See
 		Pain.Vertigo:
 			SKUL F 0 Bright
 			{
@@ -1403,22 +1401,22 @@ Actor DSLostSoul64 : DSLostSoul Replaces 64LostSoul
 			SKUL F 3 BRIGHT
 			SKUL F 3 BRIGHT A_Pain
 			Goto See
-  Death:
-    TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
-    SKUL G 0 Bright A_TakeInventory("100PercentDMGWeakness",9999)
-    SKUL G 6 BRIGHT
-    SKUL H 6 BRIGHT A_Scream
-    SKUL I 4 BRIGHT
-    SKUL J 3 BRIGHT A_NoBlocking
-    SKUL KLMNOP 3
-    TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
-    Stop
-  Ice:
-    TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
-    TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
-    SKUL F 5 A_GenericFreezeDeath
-    SKUL F 1 A_FreezeDeathChunks
-    wait
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			SKUL G 0 Bright A_TakeInventory("100PercentDMGWeakness",9999)
+			SKUL G 6 BRIGHT
+			SKUL H 6 BRIGHT A_Scream
+			SKUL I 4 BRIGHT
+			SKUL J 3 BRIGHT A_NoBlocking
+			SKUL KLMNOP 3
+			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
+			Stop
+		Ice:
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
+			SKUL F 5 A_GenericFreezeDeath
+			SKUL F 1 A_FreezeDeathChunks
+			wait
 		Crush:
 			A027 A 0
 			A027 A 0 A_PlaySound("misc/gibbed")
@@ -1426,6 +1424,7 @@ Actor DSLostSoul64 : DSLostSoul Replaces 64LostSoul
 			Stop
 	}
 }
+
 Actor DSCacodemon64 : DSCacodemon Replaces 64Cacodemon
 {
 	Radius 44
@@ -1433,182 +1432,181 @@ Actor DSCacodemon64 : DSCacodemon Replaces 64Cacodemon
 	Mass 800 // DEFAULT IS 400
 	+MISSILEMORE
 	bloodcolor "red"
- states
- {
-  Pain.Charm: TNT1 A 0 { A_PlaySound("Munchies/Charmed"); A_ChangeFlag("FRIENDLY",1); Thing_ChangeTID(0,1000); } Goto See  Pain.Heal1: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,0); } Goto See  Pain.Heal2: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,1); } Goto See  Pain.Heal3: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,2); } Goto See  Pain.Heal4: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,3); } Goto See Goto See
-  Spawn:
-    HEAD A 0 NoDelay ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
-    HEAD ABCD 15 A_Look
-    goto Spawn+1
-  See:
-    HEAD A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0)
-    HEAD A 3
+	states
 	{
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
-	 else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
-	 A_Chase;
-	}
-    HEAD ABBCCDD 3 A_Chase
-    loop
+		Pain.Charm: TNT1 A 0 { A_PlaySound("Munchies/Charmed"); A_ChangeFlag("FRIENDLY",1); Thing_ChangeTID(0,1000); } Goto See  Pain.Heal1: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,0); } Goto See  Pain.Heal2: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,1); } Goto See  Pain.Heal3: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,2); } Goto See  Pain.Heal4: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,3); } Goto See Goto See
+		Spawn:
+			HEAD A 0 NoDelay ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
+			HEAD ABCD 15 A_Look
+			goto Spawn+1
+		See:
+			HEAD A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0)
+			HEAD A 3
+			{
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
+			 else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
+			 A_Chase;
+			}
+			HEAD ABBCCDD 3 A_Chase
+			loop
 
-  Melee:
-  Missile:
-    TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
-    HEAD EF 5
-	{
-	 A_FaceTarget;
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 150) { A_SetTics(3); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 75) { A_SetTics(4); }
-	}
-    HEAD G 5 bright
- 	{
-	 A_FaceTarget;
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 150) { A_SetTics(3); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 75) { A_SetTics(4); }
+		Melee:
+		Missile:
+			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+			HEAD EF 5
+			{
+			 A_FaceTarget;
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 150) { A_SetTics(3); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 75) { A_SetTics(4); }
+			}
+			HEAD G 5 bright
+			{
+			 A_FaceTarget;
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 150) { A_SetTics(3); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 75) { A_SetTics(4); }
 
-	 A_SetUserVar("user_canusecrisisatk",0);
-	 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-     if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-	 if(user_canusecrisisatk == 1)
-	 {
-      A_PlaySound("crisisattack2",7);
-      A_PlaySound("crisisattack",6);
-	  A_CustomComboAttack("64CacodemonBallCrisis", 48, ((random(1,10)*6) * ACS_NamedExecuteWithResult("CrisisMultiplier")), "caco/melee"); // See CacodemonBall
-	 }
-	 else
-	 {
-	  A_CustomComboAttack("64CacodemonBall", 48, (random(1,10)*6), "caco/melee"); // See CacodemonBall
-	 }
-	}
-    goto See
+			 A_SetUserVar("user_canusecrisisatk",0);
+			 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+			 if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+			 if(user_canusecrisisatk == 1)
+			 {
+				A_PlaySound("crisisattack2",7);
+				A_PlaySound("crisisattack",6);
+				A_CustomComboAttack("64CacodemonBallCrisis", 48, ((random(1,10)*6) * ACS_NamedExecuteWithResult("CrisisMultiplier")), "caco/melee"); // See CacodemonBall
+			 }
+			 else
+			 {
+				A_CustomComboAttack("64CacodemonBall", 48, (random(1,10)*6), "caco/melee"); // See CacodemonBall
+			 }
+			}
+			goto See
 
-  Pain:
-    HEAD D 3
-    HEAD D 3 A_Pain
-    Goto See
-  Pain.Fist:
-    HEAD D 3
-    HEAD D 3 A_Pain
-    HEAD D 3
-    Goto See
-  Pain.Kick:
-    HEAD D 3
-    HEAD D 3 A_Pain
-    HEAD DD 6
-    Goto See
+		Pain:
+			HEAD D 3
+			HEAD D 3 A_Pain
+			Goto See
+		Pain.Fist:
+			HEAD D 3
+			HEAD D 3 A_Pain
+			HEAD D 3
+			Goto See
+		Pain.Kick:
+			HEAD D 3
+			HEAD D 3 A_Pain
+			HEAD DD 6
+			Goto See
 
-  Pain.Electric:
-  Pain.Lightning:
-  Pain.Thunder:
-    HEAD D 2
-    HEAD D 2 A_Pain
-    Goto See
-  Pain.GravityHP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
-    Goto See
-  Pain.GravityMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
-    Goto See
-  Pain.GravityHPMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
-    Goto See
-  Pain.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
-    TNT1 A 0 
-    Goto Pain
-  Death.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
-  Pain.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
-    Goto Pain
-  Death.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
-  Death:
-    TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
-	HEAD H 0 A_ChangeFlag("THRUACTORS", TRUE)
-	HEAD H 0 A_ChangeFlag("BLOCKEDBYSOLIDACTORS", FALSE)
-	HEAD H 8
-	HEAD I 8 A_Scream
-	HEAD JK 8
-	HEAD L 8 A_NoBlocking
-    TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
-	HEAD M -1 A_SetFloorClip
-    stop
-  Ice:
-    TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
-    TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
-    HEAD D 5 A_GenericFreezeDeath
-    HEAD D 1 A_FreezeDeathChunks
-    wait
-  Raise:
-    HEAD M 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
-	HEAD M 8 A_UnSetFloorClip
-	HEAD LKJIH 8
-	Goto See
-  Crush:
-	A027 A 0
-	A027 A 0 A_PlaySound("misc/gibbed")
-	A027 A -1
-	Stop
+		Pain.Electric:
+		Pain.Lightning:
+		Pain.Thunder:
+			HEAD D 2
+			HEAD D 2 A_Pain
+			Goto See
+		Pain.GravityHP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
+			Goto See
+		Pain.GravityMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
+			Goto See
+		Pain.GravityHPMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
+			Goto See
+		Pain.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
+			TNT1 A 0 
+			Goto Pain
+		Death.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Pain.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
+			Goto Pain
+		Death.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			HEAD H 0 A_ChangeFlag("THRUACTORS", TRUE)
+			HEAD H 0 A_ChangeFlag("BLOCKEDBYSOLIDACTORS", FALSE)
+			HEAD H 8
+			HEAD I 8 A_Scream
+			HEAD JK 8
+			HEAD L 8 A_NoBlocking
+			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
+			HEAD M -1 A_SetFloorClip
+			stop
+		Ice:
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
+			HEAD D 5 A_GenericFreezeDeath
+			HEAD D 1 A_FreezeDeathChunks
+			wait
+		Raise:
+			HEAD M 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
+			HEAD M 8 A_UnSetFloorClip
+			HEAD LKJIH 8
+		Goto See
+			Crush:
+			A027 A 0
+			A027 A 0 A_PlaySound("misc/gibbed")
+			A027 A -1
+			Stop
 	}
 }
 
 ACTOR 64CacodemonBallNew replaces 64CacodemonBall
 {
-  Radius 6
-  Height 8
-  Speed 14
-  FastSpeed 20
-  Damage (5 * random(1,8))
-  Projectile
-  +RANDOMIZE
-  RenderStyle Normal
-  Alpha 1
-  SeeSound "caco/attack"
-  DeathSound "caco/shotx"
-  DamageType "Thunder"
-  States
-  {
-  Spawn:
-	BAL2 ABC 4 BRIGHT
-	Loop
-  Death:
-	BAL2 D 5 BRIGHT
-	BAL2 E 3 BRIGHT A_FadeOut(0.15)
-	BAL2 F 3 BRIGHT A_FadeOut(0.15)
-	BAL2 GHIJ 3 BRIGHT A_FadeOut(0.15)
-	Stop
-
-  }
+	Radius 6
+	Height 8
+	Speed 14
+	FastSpeed 20
+	Damage (5 * random(1,8))
+	Projectile
+	+RANDOMIZE
+	RenderStyle Normal
+	Alpha 1
+	SeeSound "caco/attack"
+	DeathSound "caco/shotx"
+	DamageType "Thunder"
+	States
+	{
+		Spawn:
+			BAL2 ABC 4 BRIGHT
+			Loop
+		Death:
+			BAL2 D 5 BRIGHT
+			BAL2 E 3 BRIGHT A_FadeOut(0.15)
+			BAL2 F 3 BRIGHT A_FadeOut(0.15)
+			BAL2 GHIJ 3 BRIGHT A_FadeOut(0.15)
+			Stop
+	}
 }
 
 actor 64CacodemonBallCrisis : 64CacodemonBall
 {
- DamageType "Thunder"
- Damage ((5 * ACS_NamedExecuteWithResult("CrisisMultiplier")) * random(1,8))
- States
- {
-  Spawn:
-    BAL2 A 0
-    "####" AABBCC 2 Bright A_SpawnItemEx("CacodemonBallCrisisParticle",0,0,0,0,0,1.28)
-    Loop
-  Death:
-	BAL2 D 5 BRIGHT
-	BAL2 E 3 BRIGHT A_FadeOut(0.15)
-	BAL2 F 3 BRIGHT A_FadeOut(0.15)
-	BAL2 GHIJ 3 BRIGHT A_FadeOut(0.15)
-    Stop
- }
+	DamageType "Thunder"
+	Damage ((5 * ACS_NamedExecuteWithResult("CrisisMultiplier")) * random(1,8))
+	States
+	{
+		Spawn:
+			BAL2 A 0
+			"####" AABBCC 2 Bright A_SpawnItemEx("CacodemonBallCrisisParticle",0,0,0,0,0,1.28)
+			Loop
+		Death:
+			BAL2 D 5 BRIGHT
+			BAL2 E 3 BRIGHT A_FadeOut(0.15)
+			BAL2 F 3 BRIGHT A_FadeOut(0.15)
+			BAL2 GHIJ 3 BRIGHT A_FadeOut(0.15)
+			Stop
+	}
 }
 
 Actor DSHellKnight64 : DSHellKnight Replaces 64HellKnight
@@ -1618,83 +1616,83 @@ Actor DSHellKnight64 : DSHellKnight Replaces 64HellKnight
 	PainChance 25 // DEFAULT IS 50
 	BloodColor "18 8C 31"
 	+MISSILEMORE
-  States
-  {
-  Melee:
-  Missile:
-    TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
-    BOS2 EF 8
+	States
 	{
-	 A_FaceTarget;
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(6); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(7); }
-	}
-    BOS2 G 8
-	{
-	 A_FaceTarget;
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(6); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(7); }
-
-	 A_SetUserVar("user_canusecrisisatk",0);
-	 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-     if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-	 if(user_canusecrisisatk == 1)
-	 {
-      A_PlaySound("crisisattack2",7);
-      A_PlaySound("crisisattack",6);
-	  A_CustomComboAttack("64HellKnightBallCrisis", 52, ((random(5,10)*random(1,8)) * ACS_NamedExecuteWithResult("CrisisMultiplier")), "imp/melee");
-	 }
-	 else
-	 {
-      A_CustomComboAttack("64HellKnightBall", 52, random(5,10)*random(1,8), "imp/melee");
-	 }
-	}
-    goto See
-  Pain:
-    BOS2 H 2
-    BOS2 H 2 A_Pain
-    Goto See
+		Melee:
+		Missile:
+			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+			BOS2 EF 8
+			{
+				A_FaceTarget;
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(6); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(7); }
+			}
+			BOS2 G 8
+			{
+				A_FaceTarget;
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(6); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(7); }
+			
+				A_SetUserVar("user_canusecrisisatk",0);
+				if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+				if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+				if(user_canusecrisisatk == 1)
+				{
+					A_PlaySound("crisisattack2",7);
+					A_PlaySound("crisisattack",6);
+					A_CustomComboAttack("64HellKnightBallCrisis", 52, ((random(5,10)*random(1,8)) * ACS_NamedExecuteWithResult("CrisisMultiplier")), "imp/melee");
+				}
+				else
+				{
+					A_CustomComboAttack("64HellKnightBall", 52, random(5,10)*random(1,8), "imp/melee");
+				}
+			}
+			goto See
+		Pain:
+			BOS2 H 2
+			BOS2 H 2 A_Pain
+			Goto See
 		Pain.Vertigo:
 			BOS2 H 0 ThrustThingZ(0, 55, 0, 0)
 			BOS2 H 2
 			BOS2 H 2 A_Pain
 			Goto See
-  Pain.Fist:
-    BOS2 H 2
-    BOS2 H 2 A_Pain
-    BOS2 HH 2
-    Goto See
-  Pain.Kick:
-    BOS2 H 2
-    BOS2 H 2 A_Pain
-    BOS2 HHHH 2
-    Goto See
-  Pain.GravityHP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
-    Goto See
-  Pain.GravityMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
-    Goto See
-  Pain.GravityHPMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
-    Goto See
-  Pain.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
-    TNT1 A 0 
-    Goto Pain
-  Death.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
-  Pain.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
-    Goto Pain
-  Death.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
+		Pain.Fist:
+			BOS2 H 2
+			BOS2 H 2 A_Pain
+			BOS2 HH 2
+			Goto See
+		Pain.Kick:
+			BOS2 H 2
+			BOS2 H 2 A_Pain
+			BOS2 HHHH 2
+			Goto See
+		Pain.GravityHP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
+			Goto See
+		Pain.GravityMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
+			Goto See
+		Pain.GravityHPMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
+			Goto See
+		Pain.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
+			TNT1 A 0 
+			Goto Pain
+		Death.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Pain.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
+			Goto Pain
+		Death.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
 			BOS2 I 8
@@ -1714,8 +1712,8 @@ Actor DSHellKnight64 : DSHellKnight Replaces 64HellKnight
 			A054 A 0 A_PlaySound("misc/gibbed")
 			A054 A -1
 			Stop
-
-  }
+	
+	}
 }
 
 Actor 64HellKnightBall : HellKnightBall
@@ -1759,83 +1757,83 @@ Actor DSBaronofHell64 : DSBaronofHell Replaces 64BaronofHell
 	PainChance 25 // DEFAULT IS 50
 	BloodColor "Red"
 	+MISSILEMORE
-  States
-  {
-  Melee:
-  Missile:
-    TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
-    BOSS EF 8
+	States
 	{
-	 A_FaceTarget;
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(6); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(7); }
-	}
-    BOSS G 8
-	{
-	 A_FaceTarget;
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(6); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(7); }
+		Melee:
+		Missile:
+			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+			BOSS EF 8
+			{
+			 A_FaceTarget;
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(6); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(7); }
+			}
+			BOSS G 8
+			{
+			 A_FaceTarget;
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(6); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(7); }
 
-	 A_SetUserVar("user_canusecrisisatk",0);
-	 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-     if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-	 if(user_canusecrisisatk == 1)
-	 {
-      A_PlaySound("crisisattack2",7);
-      A_PlaySound("crisisattack",6);
-	  A_CustomComboAttack("64BaronofHellBallCrisis", 52, ((random(5,10)*random(1,8)) * ACS_NamedExecuteWithResult("CrisisMultiplier")), "imp/melee");
-	 }
-	 else
-	 {
-      A_CustomComboAttack("64BaronofHellBall", 52, random(5,10)*random(1,8), "imp/melee");
-	 }
-	}
-    goto See
-  Pain:
-    BOSS H 2
-    BOSS H 2 A_Pain
-    Goto See
+			 A_SetUserVar("user_canusecrisisatk",0);
+			 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+			 if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+			 if(user_canusecrisisatk == 1)
+			 {
+				A_PlaySound("crisisattack2",7);
+				A_PlaySound("crisisattack",6);
+				A_CustomComboAttack("64BaronofHellBallCrisis", 52, ((random(5,10)*random(1,8)) * ACS_NamedExecuteWithResult("CrisisMultiplier")), "imp/melee");
+			 }
+			 else
+			 {
+				A_CustomComboAttack("64BaronofHellBall", 52, random(5,10)*random(1,8), "imp/melee");
+			 }
+			}
+			goto See
+		Pain:
+			BOSS H 2
+			BOSS H 2 A_Pain
+			Goto See
 		Pain.Vertigo:
 			BOSS H 0 ThrustThingZ(0, 55, 0, 0)
 			BOSS H 2
 			BOSS H 2 A_Pain
 			Goto See
-  Pain.Fist:
-    BOSS H 2
-    BOSS H 2 A_Pain
-    BOSS HH 2
-    Goto See
-  Pain.Kick:
-    BOSS H 2
-    BOSS H 2 A_Pain
-    BOSS HHHH 2
-    Goto See
-  Pain.GravityHP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
-    Goto See
-  Pain.GravityMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
-    Goto See
-  Pain.GravityHPMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
-    Goto See
-  Pain.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
-    TNT1 A 0 
-    Goto Pain
-  Death.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
-  Pain.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
-    Goto Pain
-  Death.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
+		Pain.Fist:
+			BOSS H 2
+			BOSS H 2 A_Pain
+			BOSS HH 2
+			Goto See
+		Pain.Kick:
+			BOSS H 2
+			BOSS H 2 A_Pain
+			BOSS HHHH 2
+			Goto See
+		Pain.GravityHP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
+			Goto See
+		Pain.GravityMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
+			Goto See
+		Pain.GravityHPMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
+			Goto See
+		Pain.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
+			TNT1 A 0 
+			Goto Pain
+		Death.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Pain.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
+			Goto Pain
+		Death.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
 			BOSS I 8
@@ -1855,7 +1853,7 @@ Actor DSBaronofHell64 : DSBaronofHell Replaces 64BaronofHell
 			A027 A 0 A_PlaySound("misc/gibbed")
 			A027 A -1
 			Stop
-   }
+	}
 }
 
 Actor 64BaronofHellBall : BaronofHellBall
@@ -1894,17 +1892,17 @@ Actor 64BaronofHellBallCrisis : BaronofHellBallCrisis
 
 Actor 64BaronOfHellBallCrisisParticle : BaseCrisisParticle
 {
- States
- {
-  Spawn:
-    BAL8 A 0
-    "####" AABBCC 2 Bright
+	States
 	{
-     A_SetScale(scaleX-0.08,scaleY-0.08);
-	 A_FadeOut(0.08);
+		Spawn:
+			BAL8 A 0
+			"####" AABBCC 2 Bright
+			{
+			 A_SetScale(scaleX-0.08,scaleY-0.08);
+			 A_FadeOut(0.08);
+			}
+			loop
 	}
-    loop
- }
 }
 
 Actor DSArachnotron64 : DSArachnotron Replaces 64Arachnotron
@@ -1913,244 +1911,244 @@ Actor DSArachnotron64 : DSArachnotron Replaces 64Arachnotron
 	Height 88
 	states
 	{
-	See:
-		BSPI A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0)
-		BSPI A 20
-		BSPI A 3
-		{
-			if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
-			else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
-			else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
-			else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
-			if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
-			if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
-			A_BabyMetal;
-			A_Chase;
-		}
-		BSPI ABBCCDD 3
-		{
-			if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
-			else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
-			else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
-			else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
-			if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
-			if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
-			A_Chase;
-		}
-		goto See+2
-	Missile:
-		BSPI A 10 A_FaceTarget
-		TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
-		BSPI A 10 A_FaceTarget
-		TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
-		BSPI E 0 bright A_PlaySound("baby/attack", CHAN_WEAPON, 1, 0, ATTN_NORM)
-		BSPI E 4 bright
-		{
-			A_SetUserVar("user_canusecrisisatk",0);
-			if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-			if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-			if(user_canusecrisisatk == 1)
+		See:
+			BSPI A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0)
+			BSPI A 20
+			BSPI A 3
 			{
-				A_PlaySound("crisisattack2",7);
-				A_PlaySound("crisisattack",6);
-				A_CustomMissile("64ArachnotronPlasmaCrisis", 25, -12, 2);
-				A_CustomMissile("64ArachnotronPlasmaCrisis", 25, 12, -2);
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
+				else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
+				A_BabyMetal;
+				A_Chase;
 			}
-			else
+			BSPI ABBCCDD 3
 			{
-				A_CustomMissile("64ArachnotronPlasma", 25, -12, 2);
-				A_CustomMissile("64ArachnotronPlasma", 25, 12, -2);
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
+				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
+				else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
+				if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
+				A_Chase;
 			}
-		}
-		BSPI E 3 bright A_FaceTarget
-		BSPI E 0 bright A_PlaySound("baby/attack", CHAN_WEAPON, 1, 0, ATTN_NORM)
-		BSPI E 4 bright
-		{
-			A_SetUserVar("user_canusecrisisatk",0);
-			if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-			if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-			if(user_canusecrisisatk == 1)
+			goto See+2
+		Missile:
+			BSPI A 10 A_FaceTarget
+			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+			BSPI A 10 A_FaceTarget
+			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+			BSPI E 0 bright A_PlaySound("baby/attack", CHAN_WEAPON, 1, 0, ATTN_NORM)
+			BSPI E 4 bright
 			{
-				A_PlaySound("crisisattack2",7);
-				A_PlaySound("crisisattack",6);
-				A_CustomMissile("64ArachnotronPlasmaCrisis", 25, -12, 2);
-				A_CustomMissile("64ArachnotronPlasmaCrisis", 25, 12, -2);
+				A_SetUserVar("user_canusecrisisatk",0);
+				if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+				if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+				if(user_canusecrisisatk == 1)
+				{
+					A_PlaySound("crisisattack2",7);
+					A_PlaySound("crisisattack",6);
+					A_CustomMissile("64ArachnotronPlasmaCrisis", 25, -12, 2);
+					A_CustomMissile("64ArachnotronPlasmaCrisis", 25, 12, -2);
+				}
+				else
+				{
+					A_CustomMissile("64ArachnotronPlasma", 25, -12, 2);
+					A_CustomMissile("64ArachnotronPlasma", 25, 12, -2);
+				}
 			}
-			else
+			BSPI E 3 bright A_FaceTarget
+			BSPI E 0 bright A_PlaySound("baby/attack", CHAN_WEAPON, 1, 0, ATTN_NORM)
+			BSPI E 4 bright
 			{
-				A_CustomMissile("64ArachnotronPlasma", 25, -12, 2);
-				A_CustomMissile("64ArachnotronPlasma", 25, 12, -2);
+				A_SetUserVar("user_canusecrisisatk",0);
+				if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+				if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+				if(user_canusecrisisatk == 1)
+				{
+					A_PlaySound("crisisattack2",7);
+					A_PlaySound("crisisattack",6);
+					A_CustomMissile("64ArachnotronPlasmaCrisis", 25, -12, 2);
+					A_CustomMissile("64ArachnotronPlasmaCrisis", 25, 12, -2);
+				}
+				else
+				{
+					A_CustomMissile("64ArachnotronPlasma", 25, -12, 2);
+					A_CustomMissile("64ArachnotronPlasma", 25, 12, -2);
+				}
 			}
-		}
-		BSPI E 3 bright A_FaceTarget
-		BSPI E 0 bright A_PlaySound("baby/attack", CHAN_WEAPON, 1, 0, ATTN_NORM)
-		BSPI E 4 bright
-		{
-			A_SetUserVar("user_canusecrisisatk",0);
-			if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-			if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-			if(user_canusecrisisatk == 1)
+			BSPI E 3 bright A_FaceTarget
+			BSPI E 0 bright A_PlaySound("baby/attack", CHAN_WEAPON, 1, 0, ATTN_NORM)
+			BSPI E 4 bright
 			{
-				A_PlaySound("crisisattack2",7);
-				A_PlaySound("crisisattack",6);
-				A_CustomMissile("64ArachnotronPlasmaCrisis", 25, -12, 2);
-				A_CustomMissile("64ArachnotronPlasmaCrisis", 25, 12, -2);
+				A_SetUserVar("user_canusecrisisatk",0);
+				if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+				if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+				if(user_canusecrisisatk == 1)
+				{
+					A_PlaySound("crisisattack2",7);
+					A_PlaySound("crisisattack",6);
+					A_CustomMissile("64ArachnotronPlasmaCrisis", 25, -12, 2);
+					A_CustomMissile("64ArachnotronPlasmaCrisis", 25, 12, -2);
+				}
+				else
+				{
+					A_CustomMissile("64ArachnotronPlasma", 25, -12, 2);
+					A_CustomMissile("64ArachnotronPlasma", 25, 12, -2);
+				}
 			}
-			else
+			BSPI E 3 bright A_FaceTarget
+			BSPI E 0 bright A_PlaySound("baby/attack", CHAN_WEAPON, 1, 0, ATTN_NORM)
+			BSPI E 4 bright
 			{
-				A_CustomMissile("64ArachnotronPlasma", 25, -12, 2);
-				A_CustomMissile("64ArachnotronPlasma", 25, 12, -2);
+				A_SetUserVar("user_canusecrisisatk",0);
+				if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+				if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+				if(user_canusecrisisatk == 1)
+				{
+					A_PlaySound("crisisattack2",7);
+					A_PlaySound("crisisattack",6);
+					A_CustomMissile("64ArachnotronPlasmaCrisis", 25, -12, 2);
+					A_CustomMissile("64ArachnotronPlasmaCrisis", 25, 12, -2);
+				}
+				else
+				{
+					A_CustomMissile("64ArachnotronPlasma", 25, -12, 2);
+					A_CustomMissile("64ArachnotronPlasma", 25, 12, -2);
+				}
 			}
-		}
-		BSPI E 3 bright A_FaceTarget
-		BSPI E 0 bright A_PlaySound("baby/attack", CHAN_WEAPON, 1, 0, ATTN_NORM)
-		BSPI E 4 bright
-		{
-			A_SetUserVar("user_canusecrisisatk",0);
-			if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-			if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-			if(user_canusecrisisatk == 1)
+			BSPI E 3 bright A_FaceTarget
+			BSPI E 0 bright A_PlaySound("baby/attack", CHAN_WEAPON, 1, 0, ATTN_NORM)
+			BSPI E 4 bright
 			{
-				A_PlaySound("crisisattack2",7);
-				A_PlaySound("crisisattack",6);
-				A_CustomMissile("64ArachnotronPlasmaCrisis", 25, -12, 2);
-				A_CustomMissile("64ArachnotronPlasmaCrisis", 25, 12, -2);
+				A_SetUserVar("user_canusecrisisatk",0);
+				if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+				if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+				if(user_canusecrisisatk == 1)
+				{
+					A_PlaySound("crisisattack2",7);
+					A_PlaySound("crisisattack",6);
+					A_CustomMissile("64ArachnotronPlasmaCrisis", 25, -12, 2);
+					A_CustomMissile("64ArachnotronPlasmaCrisis", 25, 12, -2);
+				}
+				else
+				{
+					A_CustomMissile("64ArachnotronPlasma", 25, -12, 2);
+					A_CustomMissile("64ArachnotronPlasma", 25, 12, -2);
+				}
 			}
-			else
+			BSPI E 3 bright A_FaceTarget
+			BSPI E 0 bright A_PlaySound("baby/attack", CHAN_WEAPON, 1, 0, ATTN_NORM)
+			BSPI E 4 bright
 			{
-				A_CustomMissile("64ArachnotronPlasma", 25, -12, 2);
-				A_CustomMissile("64ArachnotronPlasma", 25, 12, -2);
+				A_SetUserVar("user_canusecrisisatk",0);
+				if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+				if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+				if(user_canusecrisisatk == 1)
+				{
+					A_PlaySound("crisisattack2",7);
+					A_PlaySound("crisisattack",6);
+					A_CustomMissile("64ArachnotronPlasmaCrisis", 25, -12, 2);
+					A_CustomMissile("64ArachnotronPlasmaCrisis", 25, 12, -2);
+				}
+				else
+				{
+					A_CustomMissile("64ArachnotronPlasma", 25, -12, 2);
+					A_CustomMissile("64ArachnotronPlasma", 25, 12, -2);
+				}
 			}
-		}
-		BSPI E 3 bright A_FaceTarget
-		BSPI E 0 bright A_PlaySound("baby/attack", CHAN_WEAPON, 1, 0, ATTN_NORM)
-		BSPI E 4 bright
-		{
-			A_SetUserVar("user_canusecrisisatk",0);
-			if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-			if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-			if(user_canusecrisisatk == 1)
-			{
-				A_PlaySound("crisisattack2",7);
-				A_PlaySound("crisisattack",6);
-				A_CustomMissile("64ArachnotronPlasmaCrisis", 25, -12, 2);
-				A_CustomMissile("64ArachnotronPlasmaCrisis", 25, 12, -2);
-			}
-			else
-			{
-				A_CustomMissile("64ArachnotronPlasma", 25, -12, 2);
-				A_CustomMissile("64ArachnotronPlasma", 25, 12, -2);
-			}
-		}
-		BSPI E 3 bright A_FaceTarget
-		BSPI E 0 bright A_PlaySound("baby/attack", CHAN_WEAPON, 1, 0, ATTN_NORM)
-		BSPI E 4 bright
-		{
-			A_SetUserVar("user_canusecrisisatk",0);
-			if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-			if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-			if(user_canusecrisisatk == 1)
-			{
-				A_PlaySound("crisisattack2",7);
-				A_PlaySound("crisisattack",6);
-				A_CustomMissile("64ArachnotronPlasmaCrisis", 25, -12, 2);
-				A_CustomMissile("64ArachnotronPlasmaCrisis", 25, 12, -2);
-			}
-			else
-			{
-				A_CustomMissile("64ArachnotronPlasma", 25, -12, 2);
-				A_CustomMissile("64ArachnotronPlasma", 25, 12, -2);
-			}
-		}
-		BSPI E 3 bright A_FaceTarget
-		BSPI E 1 bright A_SpidRefire
-		goto Missile
-  Pain:
-    BSPI F 3
-    BSPI F 3 A_Pain
-    Goto See+2
-  Pain.Fist:
-    BSPI F 3
-    BSPI F 3 A_Pain
-    BSPI FF 3
-    Goto See+2
-  Pain.Kick:
-    BSPI F 3
-    BSPI F 3 A_Pain
-    BSPI FFFF 3
-    Goto See+2
-  Pain.Electric:
-  Pain.Lightning:
-  Pain.Thunder:
-    BSPI F 3
-    BSPI F 3
-    BSPI F 3 A_Pain
-    TNT1 A 0 A_PlaySound("elecstun")
-    TNT1 A 0 A_SpawnItemEx ("ElectricDischarge", random(-15, -15), random(-15, -15), random(-15, -15), 0, 0, 0, 0, SXF_NOCHECKPOSITION) 
-    BSPI F 3
-    BSPI F 3
-    BSPI F 3
-    TNT1 A 0 A_PlaySound("elecstun")
-    TNT1 A 0 A_SpawnItemEx ("ElectricDischarge", random(-15, -15), random(-15, -15), random(-15, -15), 0, 0, 0, 0, SXF_NOCHECKPOSITION) 
-    BSPI F 3
-    BSPI F 3
-    BSPI F 3
-    Goto See+1
-  Pain.GravityHP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
-    Goto See
-  Pain.GravityMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
-    Goto See
-  Pain.GravityHPMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
-    Goto See
-  Pain.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
-    TNT1 A 0 
-    Goto Pain
-  Death.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
-  Pain.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
-    Goto Pain
-  Pain.Vertigo:
-	BSPI F 0 ThrustThingZ(0, 55, 0, 0)
-	BSPI F 3
-	BSPI F 3 A_Pain
-	Goto See+2
-  Death.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
-  Death:
-    TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
-    BSPI G 20 A_Scream
-    BSPI H 7 A_NoBlocking
-    BSPI IJK 7
-    TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
-    BSPI L -1 A_BossDeath
-    stop
-  Ice:
-    TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
-    TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
-    BSPI F 5 A_GenericFreezeDeath
-    BSPI F 1 A_FreezeDeathChunks
-    wait
-  Raise:
-    BSPI L 5 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
-    BSPI KJIHG 5
-    Goto See+1
+			BSPI E 3 bright A_FaceTarget
+			BSPI E 1 bright A_SpidRefire
+			goto Missile
+		Pain:
+			BSPI F 3
+			BSPI F 3 A_Pain
+			Goto See+2
+		Pain.Fist:
+			BSPI F 3
+			BSPI F 3 A_Pain
+			BSPI FF 3
+			Goto See+2
+		Pain.Kick:
+			BSPI F 3
+			BSPI F 3 A_Pain
+			BSPI FFFF 3
+			Goto See+2
+		Pain.Electric:
+		Pain.Lightning:
+		Pain.Thunder:
+			BSPI F 3
+			BSPI F 3
+			BSPI F 3 A_Pain
+			TNT1 A 0 A_PlaySound("elecstun")
+			TNT1 A 0 A_SpawnItemEx ("ElectricDischarge", random(-15, -15), random(-15, -15), random(-15, -15), 0, 0, 0, 0, SXF_NOCHECKPOSITION) 
+			BSPI F 3
+			BSPI F 3
+			BSPI F 3
+			TNT1 A 0 A_PlaySound("elecstun")
+			TNT1 A 0 A_SpawnItemEx ("ElectricDischarge", random(-15, -15), random(-15, -15), random(-15, -15), 0, 0, 0, 0, SXF_NOCHECKPOSITION) 
+			BSPI F 3
+			BSPI F 3
+			BSPI F 3
+			Goto See+1
+		Pain.GravityHP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
+			Goto See
+		Pain.GravityMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
+			Goto See
+		Pain.GravityHPMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
+			Goto See
+		Pain.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
+			TNT1 A 0 
+			Goto Pain
+		Death.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Pain.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
+			Goto Pain
+		Pain.Vertigo:
+			BSPI F 0 ThrustThingZ(0, 55, 0, 0)
+			BSPI F 3
+			BSPI F 3 A_Pain
+			Goto See+2
+		Death.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			BSPI G 20 A_Scream
+			BSPI H 7 A_NoBlocking
+			BSPI IJK 7
+			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
+			BSPI L -1 A_BossDeath
+			stop
+		Ice:
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
+			BSPI F 5 A_GenericFreezeDeath
+			BSPI F 1 A_FreezeDeathChunks
+			wait
+		Raise:
+			BSPI L 5 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
+			BSPI KJIHG 5
+			Goto See+1
 	}
 }
 
 Actor 64ArachnotronPlasmaCrisis : 64ArachnotronPlasma
 {
- Damage ((5 * ACS_NamedExecuteWithResult("CrisisMultiplier")) * random(1,8))
+	Damage ((5 * ACS_NamedExecuteWithResult("CrisisMultiplier")) * random(1,8))
 	States
 	{
 		Spawn:
@@ -2242,49 +2240,49 @@ Actor DSPainElemental64 : DSPainElemental Replaces 64PainElemental
 				else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 75) { A_SetTics(4); }
 			}
 			goto See
-  Pain:
-    PAIN D 6
-    PAIN D 6 A_Pain
-    Goto See
-  Pain.Fist:
-    PAIN D 6
-    PAIN D 6 A_Pain
-    PAIN DD 6
-    Goto See
-  Pain.Kick:
-    PAIN D 6
-    PAIN D 6 A_Pain
-    PAIN DDDD 6
-    Goto See
+		Pain:
+			PAIN D 6
+			PAIN D 6 A_Pain
+			Goto See
+		Pain.Fist:
+			PAIN D 6
+			PAIN D 6 A_Pain
+			PAIN DD 6
+			Goto See
+		Pain.Kick:
+			PAIN D 6
+			PAIN D 6 A_Pain
+			PAIN DDDD 6
+			Goto See
 
-  Pain.GravityHP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
-    Goto See
-  Pain.GravityMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
-    Goto See
-  Pain.GravityHPMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
-    Goto See
-  Pain.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
-    TNT1 A 0 
-    Goto Pain
-  Death.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
-  Pain.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
-    Goto Pain
-  Death.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
-  Death:
-    TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+		Pain.GravityHP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
+			Goto See
+		Pain.GravityMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
+			Goto See
+		Pain.GravityHPMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
+			Goto See
+		Pain.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
+			TNT1 A 0 
+			Goto Pain
+		Death.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Pain.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
+			Goto Pain
+		Death.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
 			PAIN E 8 BRIGHT
 			PAIN F 8 BRIGHT A_Scream
 			PAIN G 8 BRIGHT
@@ -2294,14 +2292,14 @@ Actor DSPainElemental64 : DSPainElemental Replaces 64PainElemental
 			PAIN K 4 BRIGHT A_SetTranslucent(0.50)
 			PAIN L 4 BRIGHT
 			Stop
-    TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
-    stop
-  Ice:
-    TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
-    TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
-    PAIN D 5 A_GenericFreezeDeath
-    PAIN D 1 A_FreezeDeathChunks
-    wait
+			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
+			stop
+		Ice:
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
+			PAIN D 5 A_GenericFreezeDeath
+			PAIN D 1 A_FreezeDeathChunks
+			wait
 	}
 }
 
@@ -2316,66 +2314,66 @@ Actor DSFatso64 : DSFatso Replaces 64Fatso
 	States
 	{
 		Missile:
-		TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
-		FATT H 20 A_FatRaise
-		FATT G 10 bright
-		{
-			A_SetUserVar("user_canusecrisisatk",0);
-			if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-			if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-			if(user_canusecrisisatk == 1)
+			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+			FATT H 20 A_FatRaise
+			FATT G 10 bright
 			{
-				A_PlaySound("crisisattack",6);
-				A_PlaySound("crisisattack2",7);
-				A_CustomMissile("64FatShotCrisis", 56, -35, 0);
-				A_CustomMissile("64FatShotCrisis", 56, 35, -6);
+				A_SetUserVar("user_canusecrisisatk",0);
+				if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+				if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+				if(user_canusecrisisatk == 1)
+				{
+					A_PlaySound("crisisattack",6);
+					A_PlaySound("crisisattack2",7);
+					A_CustomMissile("64FatShotCrisis", 56, -35, 0);
+					A_CustomMissile("64FatShotCrisis", 56, 35, -6);
+				}
+				else
+				{
+					A_CustomMissile("64FatShot", 56, -35, 0);
+					A_CustomMissile("64FatShot", 56, 35, -6);
+				}
 			}
-			else
+			FATT HH 5 A_FaceTarget
+			FATT G 10 bright
 			{
-				A_CustomMissile("64FatShot", 56, -35, 0);
-				A_CustomMissile("64FatShot", 56, 35, -6);
+				A_SetUserVar("user_canusecrisisatk",0);
+				if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+				if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+				if(user_canusecrisisatk == 1)
+				{
+					A_PlaySound("crisisattack",6);
+					A_PlaySound("crisisattack2",7);
+					A_CustomMissile("64FatShotCrisis", 56, -35, 0);
+					A_CustomMissile("64FatShotCrisis", 56, 35, -6);
+				}
+				else
+				{
+					A_CustomMissile("64FatShot", 56, -35, 0);
+					A_CustomMissile("64FatShot", 56, 35, -6);
+				}
 			}
-		}
-		FATT HH 5 A_FaceTarget
-		FATT G 10 bright
-		{
-			A_SetUserVar("user_canusecrisisatk",0);
-			if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-			if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-			if(user_canusecrisisatk == 1)
+			FATT HH 5 A_FaceTarget
+			FATT G 10 bright
 			{
-				A_PlaySound("crisisattack",6);
-				A_PlaySound("crisisattack2",7);
-				A_CustomMissile("64FatShotCrisis", 56, -35, 0);
-				A_CustomMissile("64FatShotCrisis", 56, 35, -6);
+				A_SetUserVar("user_canusecrisisatk",0);
+				if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+				if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+				if(user_canusecrisisatk == 1)
+				{
+					A_PlaySound("crisisattack",6);
+					A_PlaySound("crisisattack2",7);
+					A_CustomMissile("64FatShotCrisis", 56, -35, 0);
+					A_CustomMissile("64FatShotCrisis", 56, 35, -6);
+				}
+				else
+				{
+					A_CustomMissile("64FatShot", 56, -35, 0);
+					A_CustomMissile("64FatShot", 56, 35, -6);
+				}
 			}
-			else
-			{
-				A_CustomMissile("64FatShot", 56, -35, 0);
-				A_CustomMissile("64FatShot", 56, 35, -6);
-			}
-		}
-		FATT HH 5 A_FaceTarget
-		FATT G 10 bright
-		{
-			A_SetUserVar("user_canusecrisisatk",0);
-			if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-			if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-			if(user_canusecrisisatk == 1)
-			{
-				A_PlaySound("crisisattack",6);
-				A_PlaySound("crisisattack2",7);
-				A_CustomMissile("64FatShotCrisis", 56, -35, 0);
-				A_CustomMissile("64FatShotCrisis", 56, 35, -6);
-			}
-			else
-			{
-				A_CustomMissile("64FatShot", 56, -35, 0);
-				A_CustomMissile("64FatShot", 56, 35, -6);
-			}
-		}
-		FATT HH 5 A_FaceTarget
-		goto See
+			FATT HH 5 A_FaceTarget
+			goto See
 		Pain:
 			FATT I 3
 			FATT I 3 A_Pain
@@ -2451,19 +2449,19 @@ Actor DSFatso64 : DSFatso Replaces 64Fatso
 
 Actor 64FatShotNew : 64FatShot Replaces 64FatShot
 {
-  DamageType "Fire"
+	DamageType "Fire"
 }
 
 Actor 64FatShotCrisis : 64FatShot
 {
- DamageType "Fire"
- Damage ((8 * ACS_NamedExecuteWithResult("CrisisMultiplier")) * random(1,8))
- States
- {
+	DamageType "Fire"
+	Damage ((8 * ACS_NamedExecuteWithResult("CrisisMultiplier")) * random(1,8))
+	States
+	{
 		Spawn:
 			MANF ABC 3 BRIGHT A_SpawnItemEx("FatShotCrisisParticle",0,0,0,0,0,1.28)
 			Loop
- }
+	}
 }
 
 Actor DSCyberdemon64 : DSCyberdemon Replaces 64Cyberdemon //Stomp commented out for now until 64 Cyberdemon stomping sprites are done
@@ -2473,241 +2471,241 @@ Actor DSCyberdemon64 : DSCyberdemon Replaces 64Cyberdemon //Stomp commented out 
 	Speed 14
 	PainChance 15
 
- states
- {
-  Pain.Charm: TNT1 A 0 { A_PlaySound("Munchies/Charmed"); A_ChangeFlag("FRIENDLY",1); Thing_ChangeTID(0,1000); } Goto See  Pain.Heal1: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,0); } Goto See  Pain.Heal2: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,1); } Goto See  Pain.Heal3: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,2); } Goto See  Pain.Heal4: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,3); } Goto See Goto See
-  Spawn:
-    CYBR C 0 NoDelay ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
-    CYBR CD 10 A_Look
-    goto Spawn+1
-  See:
-    CYBR A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0)
-    CYBR A 0
+	states
 	{
-	 A_SetUserVar("user_shotsfired",0);
-	 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120)
-	 {
-	  if (random(1,8) == 1) { A_SetUserVar("user_shotsfiredmax",6); } else { A_SetUserVar("user_shotsfiredmax",5); }
-	 }
-	 else
-	 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60)
-	 {
-	  if (random(1,8) == 1) { A_SetUserVar("user_shotsfiredmax",5); } else { A_SetUserVar("user_shotsfiredmax",4); }
-	 }
-	 else
-	 {
-	  if (random(1,8) == 1) { A_SetUserVar("user_shotsfiredmax",4); } else { A_SetUserVar("user_shotsfiredmax",3); }
-	 }
-	}
-    CYBR A 3 
-	{
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
-	 else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
-	 A_Metal;
-	 //A_JumpIfCloser(120, "Stomp");
-	}
-    CYBR AA 3 
-	{
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
-	 else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
-	 A_Chase;
-	 //A_JumpIfCloser(120, "Stomp");
-	}
-    CYBR B 3 
-	{
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
-	 else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
-	 A_Hoof;
-	 //A_JumpIfCloser(120, "Stomp");
-	}
-    CYBR BBCCCDDD 3
-	{
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
-	 else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
-	 A_Chase;
-	 //A_JumpIfCloser(120, "Stomp");
-	}
-    loop
+		Pain.Charm: TNT1 A 0 { A_PlaySound("Munchies/Charmed"); A_ChangeFlag("FRIENDLY",1); Thing_ChangeTID(0,1000); } Goto See  Pain.Heal1: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,0); } Goto See  Pain.Heal2: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,1); } Goto See  Pain.Heal3: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,2); } Goto See  Pain.Heal4: TNT1 A 0 { ACS_NamedExecuteAlways("Healing_Actor",0,3); } Goto See Goto See
+		Spawn:
+			CYBR C 0 NoDelay ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
+			CYBR CD 10 A_Look
+			goto Spawn+1
+		See:
+			CYBR A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,0)
+			CYBR A 0
+			{
+			 A_SetUserVar("user_shotsfired",0);
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120)
+			 {
+				if (random(1,8) == 1) { A_SetUserVar("user_shotsfiredmax",6); } else { A_SetUserVar("user_shotsfiredmax",5); }
+			 }
+			 else
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60)
+			 {
+				if (random(1,8) == 1) { A_SetUserVar("user_shotsfiredmax",5); } else { A_SetUserVar("user_shotsfiredmax",4); }
+			 }
+			 else
+			 {
+				if (random(1,8) == 1) { A_SetUserVar("user_shotsfiredmax",4); } else { A_SetUserVar("user_shotsfiredmax",3); }
+			 }
+			}
+			CYBR A 3 
+			{
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
+			 else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
+			 A_Metal;
+			 //A_JumpIfCloser(120, "Stomp");
+			}
+			CYBR AA 3 
+			{
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
+			 else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
+			 A_Chase;
+			 //A_JumpIfCloser(120, "Stomp");
+			}
+			CYBR B 3 
+			{
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
+			 else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
+			 A_Hoof;
+			 //A_JumpIfCloser(120, "Stomp");
+			}
+			CYBR BBCCCDDD 3
+			{
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 180) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",1); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_ChangeFlag("MISSILEEVENMORE",1); A_ChangeFlag("MISSILEMORE",0); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("MISSILEMORE",1); A_ChangeFlag("MISSILEEVENMORE",0); }
+			 else { A_ChangeFlag("MISSILEMORE",0); A_ChangeFlag("MISSILEEVENMORE",0); }
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_ChangeFlag("AVOIDMELEE",1); }
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 90) { A_SetTics(2); }
+			 A_Chase;
+			 //A_JumpIfCloser(120, "Stomp");
+			}
+			loop
 
-  Stomp:
-    TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
-	CYBR Z 5 A_FaceTarget
-	CYMA A 7
-	{
-	 A_FaceTarget;
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(5); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(6); }
-	}
-	CYMA B 7
-	{
-	 A_FaceTarget;
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(5); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(6); }
-	 
-	 A_SetUserVar("user_canusecrisisatk",0);
-	 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-     if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-	 if(user_canusecrisisatk == 1)
-	 {
-      A_PlaySound("crisisattack",6);
-      A_PlaySound("crisisattack2",7);
-	  A_CustomMissile("CyberStompCrisis",10,0,0,0);
-	  A_Quake(5,21,0,512,"nosound/silent");
-	 }
-	 else
-	 {
-	  A_Quake(2,21,0,512,"nosound/silent");
-	  A_CustomMissile("CyberStomp",10,0,0,0);
-	 }
-	}
-	CYMA B 7
-	{
-     if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(5); }
-     else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(6); }
-	}
-	CYMA B 0 A_Jump(64,2)
-	CYMA B 0 A_JumpIfCloser(180, "Stomp")
-	CYMA B 0
-	Goto See
+		Stomp:
+			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+			CYBR Z 5 A_FaceTarget
+			CYMA A 7
+			{
+			 A_FaceTarget;
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(5); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(6); }
+			}
+			CYMA B 7
+			{
+			 A_FaceTarget;
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(5); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(6); }
+		 
+			 A_SetUserVar("user_canusecrisisatk",0);
+			 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+			 if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+			 if(user_canusecrisisatk == 1)
+			 {
+				A_PlaySound("crisisattack",6);
+				A_PlaySound("crisisattack2",7);
+				A_CustomMissile("CyberStompCrisis",10,0,0,0);
+				A_Quake(5,21,0,512,"nosound/silent");
+			 }
+			 else
+			 {
+				A_Quake(2,21,0,512,"nosound/silent");
+				A_CustomMissile("CyberStomp",10,0,0,0);
+			 }
+			}
+			CYMA B 7
+			{
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { A_SetTics(5); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { A_SetTics(6); }
+			}
+			CYMA B 0 A_Jump(64,2)
+			CYMA B 0 A_JumpIfCloser(180, "Stomp")
+			CYMA B 0
+			Goto See
 
-  Missile:
-    TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
-	//TNT1 A 0 A_JumpIfCloser(180, "Stomp")
-    TNT1 A 0
-	{
-	 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { return state("Speed3"); }
-	 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { return state("Speed2"); }
-	 else { return state("Speed1"); }
-	 return state("");
-	}
+		Missile:
+			TNT1 A 0 ACS_NamedExecuteAlways("RefreshStealthInfo",0,1) // makes a Stealth Monster become more visible
+		//TNT1 A 0 A_JumpIfCloser(180, "Stomp")
+			TNT1 A 0
+			{
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { return state("Speed3"); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { return state("Speed2"); }
+			 else { return state("Speed1"); }
+			 return state("");
+			}
 
-  Speed1:
-    CYBR E 6 A_FaceTarget
-	goto Attack
-  Speed1a:
-    CYBR F 12
-    TNT1 A 0 A_SetUserVar("user_shotsfired",user_shotsfired+1)
-    TNT1 A 0 A_JumpIf(user_shotsfired >= user_shotsfiredmax, "See")
-    goto Missile
-  Speed2:
-    CYBR E 10 A_FaceTarget
-	goto Attack
-  Speed2a:
-    CYBR F 10
-    TNT1 A 0 A_SetUserVar("user_shotsfired",user_shotsfired+1)
-    TNT1 A 0 A_JumpIf(user_shotsfired >= user_shotsfiredmax, "See")
-    goto Missile
-  Speed3:
-    CYBR E 8 A_FaceTarget
-	goto Attack
-  Speed3a:
-    CYBR F 8
-    TNT1 A 0 A_SetUserVar("user_shotsfired",user_shotsfired+1)
-    TNT1 A 0 A_JumpIf(user_shotsfired >= user_shotsfiredmax, "See")
-    goto Missile
+		Speed1:
+			CYBR E 6 A_FaceTarget
+			goto Attack
+		Speed1a:
+			CYBR F 12
+			TNT1 A 0 A_SetUserVar("user_shotsfired",user_shotsfired+1)
+			TNT1 A 0 A_JumpIf(user_shotsfired >= user_shotsfiredmax, "See")
+			goto Missile
+		Speed2:
+			CYBR E 10 A_FaceTarget
+			goto Attack
+		Speed2a:
+			CYBR F 10
+			TNT1 A 0 A_SetUserVar("user_shotsfired",user_shotsfired+1)
+			TNT1 A 0 A_JumpIf(user_shotsfired >= user_shotsfiredmax, "See")
+			goto Missile
+		Speed3:
+			CYBR E 8 A_FaceTarget
+			goto Attack
+		Speed3a:
+			CYBR F 8
+			TNT1 A 0 A_SetUserVar("user_shotsfired",user_shotsfired+1)
+			TNT1 A 0 A_JumpIf(user_shotsfired >= user_shotsfiredmax, "See")
+			goto Missile
 
-  Attack:
-	TNT1 A 0
-    { 
-	 A_SetUserVar("user_canusecrisisatk",0);
-	 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
-     if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
-	 if(user_canusecrisisatk == 1)
-	 {
-      A_PlaySound("crisisattack",6);
-      A_PlaySound("crisisattack2",7);
-      A_CustomMissile("64CyberRocketCrisis", 80, -25, 0);
-	 }
-	 else
-	 {
-	  A_CustomMissile("64CyberRocket", 80, -25, 0);
-	 }
-	}
-    TNT1 A 0
-	{
-	 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { return state("Speed3a"); }
-	 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { return state("Speed2a"); }
-	 else { return state("Speed1a"); }
-	 return state("");
-    }	
-    goto Speed1a
+		Attack:
+			TNT1 A 0
+			{ 
+			 A_SetUserVar("user_canusecrisisatk",0);
+			 if(health <= user_HPLowRange) { if(health <= user_HPCritRange) { A_SetUserVar("user_canusecrisisatk",1); } else { if (random(1,4) == 4) { A_SetUserVar("user_canusecrisisatk",1);	} } }
+			 if(GetCVar("dvds_monstercrisisattacks") == 0) { A_SetUserVar("user_canusecrisisatk",0); }
+			 if(user_canusecrisisatk == 1)
+			 {
+				A_PlaySound("crisisattack",6);
+				A_PlaySound("crisisattack2",7);
+				A_CustomMissile("64CyberRocketCrisis", 80, -25, 0);
+			 }
+			 else
+			 {
+				A_CustomMissile("64CyberRocket", 80, -25, 0);
+			 }
+			}
+			TNT1 A 0
+			{
+			 if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 120) { return state("Speed3a"); }
+			 else if (GetCVar("dvds_monsterlevelbehavior") > 0 && user_monsterlevel > 60) { return state("Speed2a"); }
+			 else { return state("Speed1a"); }
+			 return state("");
+			}	
+			goto Speed1a
 
-  Pain:
-    TNT1 A 0 A_SetUserVar("user_shotsfired",0)
-    CYBR F 10 A_Pain
-    Goto See
-	
-  Pain.Fist:
-    CYBR F 5 
-    CYBR F 5 A_Pain
-    CYBR FF 5 
-    Goto See
-  Pain.Kick:
-    CYBR F 5 
-    CYBR F 5 A_Pain
-    CYBR FFFF 5 
-    Goto See
-  Pain.Electric:
-  Pain.Lightning:
-  Pain.Thunder:
-    CYBR F 5 
-    CYBR F 5 
-    CYBR F 5 A_Pain
-    TNT1 A 0 A_PlaySound("elecstun")
-    TNT1 A 0 A_SpawnItemEx ("ElectricDischarge", random(-15, -15), random(-15, -15), random(-15, -15), 0, 0, 0, 0, SXF_NOCHECKPOSITION) 
-    CYBR F 5 
-    CYBR F 5 
-    CYBR F 5 
-    TNT1 A 0 A_PlaySound("elecstun")
-    TNT1 A 0 A_SpawnItemEx ("ElectricDischarge", random(-15, -15), random(-15, -15), random(-15, -15), 0, 0, 0, 0, SXF_NOCHECKPOSITION) 
-    CYBR F 5 
-    CYBR F 5 
-    CYBR F 5 
-    Goto See
-  Pain.GravityHP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
-    Goto See
-  Pain.GravityMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
-    Goto See
-  Pain.GravityHPMP:
-    TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
-    Goto See
-  Pain.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
-    TNT1 A 0 
-    Goto Pain
-  Death.Sceptre:
-    TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
-    TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
-  Pain.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
-    Goto Pain
-  Death.Gauntlets:
-    TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
-    TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
-    Goto Death
-  Death:
-    TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+		Pain:
+			TNT1 A 0 A_SetUserVar("user_shotsfired",0)
+			CYBR F 10 A_Pain
+			Goto See
+
+		Pain.Fist:
+			CYBR F 5 
+			CYBR F 5 A_Pain
+			CYBR FF 5 
+			Goto See
+		Pain.Kick:
+			CYBR F 5 
+			CYBR F 5 A_Pain
+			CYBR FFFF 5 
+			Goto See
+		Pain.Electric:
+		Pain.Lightning:
+		Pain.Thunder:
+			CYBR F 5 
+			CYBR F 5 
+			CYBR F 5 A_Pain
+			TNT1 A 0 A_PlaySound("elecstun")
+			TNT1 A 0 A_SpawnItemEx ("ElectricDischarge", random(-15, -15), random(-15, -15), random(-15, -15), 0, 0, 0, 0, SXF_NOCHECKPOSITION) 
+			CYBR F 5 
+			CYBR F 5 
+			CYBR F 5 
+			TNT1 A 0 A_PlaySound("elecstun")
+			TNT1 A 0 A_SpawnItemEx ("ElectricDischarge", random(-15, -15), random(-15, -15), random(-15, -15), 0, 0, 0, 0, SXF_NOCHECKPOSITION) 
+			CYBR F 5 
+			CYBR F 5 
+			CYBR F 5 
+			Goto See
+		Pain.GravityHP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,0,0,0)
+			Goto See
+		Pain.GravityMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,1,0,0)
+			Goto See
+		Pain.GravityHPMP:
+			TNT1 A 0 ACS_NamedExecuteAlways("Hand-GravityAttack",0,2,0,0)
+			Goto See
+		Pain.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,10) // Increase EXP for Sceptre [1+((HP/300)/10)]
+			TNT1 A 0 
+			Goto Pain
+		Death.Sceptre:
+			TNT1 A 0 A_CheckFlag("FRIENDLY",2,AAPTR_DEFAULT)
+			TNT1 A 0 ACS_NamedExecuteAlways("AddSceptreEXP",0,0,0,1) // Increase EXP for Sceptre [1+(HP/300)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Pain.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,1,0) // Give some life when hurting a monster [1+(HP/500)]
+			Goto Pain
+		Death.Gauntlets:
+			TNT1 A 0 ACS_NamedExecuteAlways("SauronGauntletsHit",0,0,2,0) // Give some life when killing a monster [3+(HP/100)]
+			TNT1 A 0 A_JumpIfHealthLower(user_HPXDeathRange,"XDeath")
+			Goto Death
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
 			CYBR G 10
 			CYBR G 0 A_Scream
 			CYBR G 4 A_SpawnItemEx("64BossExplosion", 0, 0, 0, 0, 0, 0, 0, 130)
@@ -2740,64 +2738,63 @@ Actor DSCyberdemon64 : DSCyberdemon Replaces 64Cyberdemon //Stomp commented out 
 			CYBR O 30
 			TNT1 A 0 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,1)
 			CYBR O -1 A_BossDeath
-  Ice:
-    TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
-    TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
-    CYBR F 5 A_GenericFreezeDeath
-    CYBR F 1 A_FreezeDeathChunks
-    wait
-  Raise:
-    CYBR O 10 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
-    CYBR NMLKJHI 10
-    goto See
+		Ice:
+			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+			TNT1 A 0 A_ChangeFlag("CANTSEEK", TRUE)
+			CYBR F 5 A_GenericFreezeDeath
+			CYBR F 1 A_FreezeDeathChunks
+			wait
+		Raise:
+			CYBR O 10 ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
+			CYBR NMLKJHI 10
+			goto See
 		Crush:
 			A027 A 0
 			A027 A 0 A_PlaySound("misc/gibbed")
 			A027 A -1
 			Stop
-
- }
+	}
 }
 
 Actor 64CyberRocketNew : 64CyberRocket Replaces 64CyberRocket
 {
-DamageType "Explosive"
+	DamageType "Explosive"
 }
 
 Actor 64CyberRocketCrisis : 64CyberRocket
 {
- DamageType "Explosive"
- Damage ((20 * ACS_NamedExecuteWithResult("CrisisMultiplier")) * random(1,8))
- States
- {
-  Spawn:
-    MISL A 1 Bright
+	DamageType "Explosive"
+	Damage ((20 * ACS_NamedExecuteWithResult("CrisisMultiplier")) * random(1,8))
+	States
 	{
-		A_SpawnItemEx("RocketCrisisParticle",0,0,0,0,0,1.28);
-		A_CustomMissile("64RocketSmokeTrail", 0, 0, 0, 2, 0);
+		Spawn:
+			MISL A 1 Bright
+			{
+				A_SpawnItemEx("RocketCrisisParticle",0,0,0,0,0,1.28);
+				A_CustomMissile("64RocketSmokeTrail", 0, 0, 0, 2, 0);
+			}
+			MISL A 1 Bright
+			{
+				A_SpawnItemEx("RocketCrisisParticle",0,0,0,0,0,1.28);
+			}
+			Loop
 	}
-    MISL A 1 Bright
-	{
-		A_SpawnItemEx("RocketCrisisParticle",0,0,0,0,0,1.28);
-	}
-    Loop
- }
 }
 
 Actor DSMotherDemon64 : 64MotherDemon Replaces 64MotherDemon
 {
-  var int user_theta; var int user_dormant; var int user_isstealth; var int user_basespeed; var int user_baseattack; var int user_basedefense; var int user_basemass; var int user_monsterlevel; var int user_legendaryevolved; var int user_extraevolvechance; var int user_extrastealthchance;
-  var int user_MaxHP; var int user_HPLowRange; var int user_HPCritRange; var int user_HPBuffRange; var int user_HPXDeathRange;
-  var int user_checkmapskill; var int user_ressurrectstr; var int user_resurrectedtimes; var int user_canusecrisisatk; // For checking if a monster has been given Skill/Map inventory items yet.
-  var int user_shotsfired; var int user_shotsfiredmax;
+	var int user_theta; var int user_dormant; var int user_isstealth; var int user_basespeed; var int user_baseattack; var int user_basedefense; var int user_basemass; var int user_monsterlevel; var int user_legendaryevolved; var int user_extraevolvechance; var int user_extrastealthchance;
+	var int user_MaxHP; var int user_HPLowRange; var int user_HPCritRange; var int user_HPBuffRange; var int user_HPXDeathRange;
+	var int user_checkmapskill; var int user_ressurrectstr; var int user_resurrectedtimes; var int user_canusecrisisatk; // For checking if a monster has been given Skill/Map inventory items yet.
+	var int user_shotsfired; var int user_shotsfiredmax;
 	States
 	{
 		Spawn:
-    			RECT A 0 NoDelay ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
+ 			RECT A 0 NoDelay ACS_NamedExecuteAlways("MonsterStatsHP_ATK_DEF_SPD",0,0)
 			RECT ABCD 13 A_Look
 			Loop
 		Death:
-    			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
+ 			TNT1 A 0 ACS_NamedExecuteAlways("AddEXP",0,-2,0,1)
 			RECT I 10
 			RECT I 0 A_Scream
 			RECT I 4 A_SpawnItemEx("64BossExplosion", 0, 0, 0, 0, 0, 0, 0, 130)
